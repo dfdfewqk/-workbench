@@ -172,14 +172,197 @@ body { background:#f3f6fa;color:#10263d; }
   .view-panel.is-plan-management .equipment-layout {display:block;}
 }
 
+.sm-data-panel{margin:0 0 18px;padding:16px 18px;border:1px solid #d3e3f4;border-radius:12px;background:#f7fbff;color:#234060}
+.sm-data-panel h2{font-size:16px;margin:0 0 9px}
+.sm-data-panel p{font-size:13px;line-height:1.65;margin:6px 0}
+.sm-data-panel button{min-height:44px;padding:9px 14px}
+.sm-cleanup-panel{margin:16px 0;border:1px solid #e4d5c9;border-radius:12px;padding:15px 18px;background:#fffdfa}
+.sm-cleanup-panel summary{font-weight:700;cursor:pointer;font-size:15px;padding:8px;min-height:44px}
+.sm-cleanup-panel p{font-size:13px;line-height:1.65}
+.sm-cleanup-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border:1px solid #dfE4eb;border-radius:9px;margin:8px 0;background:white;cursor:pointer}
+.sm-cleanup-item input{width:22px;height:22px;flex-shrink:0;accent-color:#b91c1c}
+.sm-cleanup-item strong,.sm-cleanup-item small{display:block;overflow-wrap:anywhere}
+.sm-cleanup-item small{color:#52647c;font-size:12px;margin-top:3px}
+.sm-cleanup-panel label.sm-confirm{display:block;margin:14px 0;font-size:13px}
+.sm-cleanup-panel label.sm-confirm input{width:18px;height:18px;margin-right:7px;vertical-align:middle}
+.sm-cleanup-panel button{min-height:44px;padding:10px 14px;margin:7px 0;border-radius:8px}
+.sm-cleanup-panel button.sm-danger{background:#b91c1c;color:#fff;border:none}
+.sm-cleanup-panel button:disabled{opacity:.4;cursor:not-allowed}
+.sm-cleanup-panel #sm-cleanup-phrase{display:block;width:100%;max-width:400px;min-height:44px;margin:10px 0;padding:10px;border:1px solid #b5bdc9;border-radius:7px}
+.sm-cleanup-panel #sm-cleanup-preview{white-space:pre-wrap;padding:12px;border:1px solid #e3d7c6;border-radius:8px;background:#fff6e9}
+.sm-cleanup-panel #sm-cleanup-message{white-space:pre-wrap;padding:10px;color:#614a32}
+.view-panel.is-plan-management .sm-cleanup-panel{display:none}
+@media(max-width:760px){.sm-data-panel,.sm-cleanup-panel{padding:12px}.sm-cleanup-panel button.sm-danger{width:100%;}}
+
+/* Focused workbench affects only the scheduled plan inspection editor. */
+.plan-focus-toolbar{padding:14px;margin:14px 0 12px;border:1px solid #d9e5ec;border-radius:12px;background:#f7fbff}
+.plan-focus-toolbar[hidden],.plan-focus-navigation[hidden],.plan-focus-hint[hidden],.plan-execution-item[hidden]{display:none!important}
+.plan-focus-heading{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:15px;color:#183d50}
+.plan-focus-count{color:#466475;font-size:13px;font-weight:600}
+.plan-focus-progress{display:block;width:100%;height:11px;margin:12px 0;accent-color:#266cac}
+.plan-focus-controls{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:12px}
+.plan-focus-select-label{display:flex;flex-direction:column;gap:6px;color:#45606b;font-size:13px;font-weight:600;min-width:min(280px,100%);flex:1}
+.plan-focus-jump{height:46px;width:100%;max-width:600px;padding:7px 10px;border:1px solid #bbcbd5;border-radius:8px;background:#fff;color:#203b4c;font-size:14px}
+.plan-focus-toggle,.plan-focus-navigation button{min-height:46px;font-size:14px;padding:10px 14px}
+.plan-execution-panel .plan-execution-item{padding:18px;border-radius:12px;border-color:#d8e2e8;background:#fff}
+.plan-execution-panel .plan-execution-item.is-current{border-color:#8eb3d0;box-shadow:0 0 0 1px #b4d1e7}
+.plan-execution-panel .plan-execution-item legend{font-size:16px;font-weight:700;line-height:1.45;color:#203d4c}
+.plan-execution-panel .plan-execution-guidance{font-size:13px;line-height:1.6;color:#516a76}
+.plan-execution-panel .plan-execution-choice{min-height:48px;min-width:110px;padding:10px 16px;font-size:15px;justify-content:center;border-radius:9px}
+.plan-execution-panel .plan-execution-choice input{width:17px;height:17px}
+.plan-execution-panel .plan-execution-item textarea{display:block;width:100%;min-height:76px;margin-top:14px;padding:11px;border:1px solid #bdcbd2;border-radius:8px;font-size:14px;line-height:1.5;color:#203d4c;background:#fff}
+.plan-execution-panel .plan-execution-meta{font-size:13px;line-height:1.55}
+.plan-execution-panel .plan-execution-note{font-size:12px;line-height:1.6}
+.plan-execution-panel .plan-execution-field input,.plan-execution-panel .plan-execution-field textarea{min-height:44px;font-size:14px}
+.plan-execution-panel .plan-execution-heading h3{font-size:19px}
+.plan-execution-panel .plan-execution-heading>.secondary-button{min-height:44px;font-size:13px}
+.plan-execution-panel .plan-execution-items-heading{font-size:15px}
+.plan-execution-panel :is(button,select,input,textarea):focus-visible{outline:3px solid #206eb6;outline-offset:2px}
+.plan-focus-navigation{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.plan-focus-current{margin:0;color:#435a66;font-size:13px;text-align:center;font-weight:600}
+.plan-focus-hint{font-size:13px;line-height:1.55;color:#31546b;padding:11px 13px;border-left:3px solid #4581b7;background:#f1f7fc;border-radius:6px;margin:10px 0}
+.plan-execution-panel .plan-draft-status{font-size:12px;line-height:1.5}
+@media(max-width:760px){.plan-focus-toolbar{padding:12px}.plan-execution-panel .plan-execution-choice{flex:1;min-width:86px}.plan-focus-navigation{display:grid;grid-template-columns:1fr 1fr;gap:9px}.plan-focus-navigation .plan-focus-current{grid-column:1/-1;grid-row:1}.plan-focus-navigation button{width:100%}.plan-focus-controls .plan-focus-toggle{width:100%}.plan-execution-panel .plan-execution-item{padding:14px}.plan-execution-panel .plan-execution-item legend{font-size:15px}}
+@media(max-width:380px){.plan-execution-panel .plan-execution-choice{min-width:0;padding:9px 8px;font-size:14px}}
+
+/* Smart Maintenance: on-site small-screen ergonomics. Presentation only;
+   does not modify stored records, inspection completion, fault approvals or navigation. */
+:where(.view-panel,.panel,.plan-execution-panel,.fault-editor){min-width:0}
+:where(.schedule-table,.fault-table) :where(td,th){overflow-wrap:anywhere}
+@media (max-width:760px){
+  /* Keep all four major destinations visible without horizontal navigation. */
+  .mobile-nav{position:relative;z-index:4;grid-template-columns:repeat(4,minmax(0,1fr))}
+  .mobile-nav .group-link{font-size:13px;min-height:48px;line-height:1.25;white-space:normal;overflow-wrap:normal}
+  .workspace-subnav{scroll-padding-inline:12px}
+  .workspace-subnav .nav-sub-link{font-size:14px;min-height:46px;white-space:nowrap}
+  .content{overflow-wrap:anywhere;min-width:0}
+  .panel-heading{gap:10px}
+  .page-heading .page-subtitle{line-height:1.55}
+  /* The six-column fault list and five-column schedule used to require sideways
+     scrolling on a phone. Show each row as a self-contained work card instead. */
+  .fault-table-wrap,.schedule-panel .table-wrap{overflow-x:visible;min-width:0}
+  .fault-table,.schedule-table{width:100%;min-width:0!important;table-layout:auto;border-collapse:separate}
+  .fault-table thead,.schedule-table thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .fault-table tbody,.schedule-table tbody{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+  .fault-table tbody tr,.schedule-table tbody tr{display:block;padding:13px 14px;border:1px solid #d8e3ee;border-radius:12px;background:#fff;box-shadow:0 1px 5px rgba(15,23,42,.05);min-width:0}
+  .fault-table tbody td,.schedule-table tbody td{display:block;width:auto!important;min-width:0!important;max-width:none;border-bottom:1px solid #e7edf3;padding:10px 0;font-size:14px;line-height:1.55;white-space:normal;overflow-wrap:anywhere}
+  .fault-table tbody td:last-child,.schedule-table tbody td:last-child{border-bottom:0;padding-bottom:0}
+  .fault-table tbody td:first-child,.schedule-table tbody td:first-child{padding-top:0;font-size:15px}
+  .fault-table tbody td::before,.schedule-table tbody td::before{display:block;font-size:12px;font-weight:700;color:#576b7e;line-height:1.5;margin:0 0 3px}
+  .fault-table td:nth-child(1)::before,.schedule-table td:nth-child(1)::before{content:'설비'}
+  .fault-table td:nth-child(2)::before{content:'관리 책임자'}
+  .fault-table td:nth-child(3)::before{content:'우선순위 · 운전 상태'}
+  .fault-table td:nth-child(4)::before{content:'조치 기한 · 재확인'}
+  .fault-table td:nth-child(5)::before{content:'고장 상태'}
+  .fault-table td:nth-child(6)::before{content:'작업 열기'}
+  .schedule-table td:nth-child(2)::before{content:'점검 계획 · 회차'}
+  .schedule-table td:nth-child(3)::before{content:'점검 주기'}
+  .schedule-table td:nth-child(4)::before{content:'예정일 · 상태'}
+  .schedule-table td:nth-child(5)::before{content:'완료 기록'}
+  .fault-table td[colspan],.schedule-table td[colspan]{padding:12px 3px;line-height:1.65}
+  .fault-table td[colspan]::before,.schedule-table td[colspan]::before{content:none!important}
+  .fault-table td button,.schedule-table .schedule-start-button{display:block;width:100%;min-width:0;min-height:48px;margin-top:9px;padding:11px 14px;font-size:14px;white-space:normal}
+  .fault-toolbar{align-items:stretch;gap:8px}
+  .fault-toolbar label{width:100%;font-size:14px}
+  .fault-toolbar select{flex:1;min-width:0;height:46px;font-size:14px}
+  .fault-toolbar button{min-height:46px}
+  .schedule-toolbar label,.schedule-toolbar select,.schedule-description,.schedule-message{font-size:13px;line-height:1.6}
+  .schedule-toolbar select{min-height:46px}
+  .schedule-status{font-size:12px;line-height:1.5;padding:5px 9px;margin:7px 5px 0 0}
+  .fault-quick-overview,.fault-quick-actions{margin:13px 0;padding:14px;min-width:0}
+  .fault-quick-overview h3,.fault-quick-actions h3{font-size:16px}
+  .fault-quick-cell dt{font-size:12px;line-height:1.4}
+  .fault-quick-cell dd{font-size:14px;line-height:1.5}
+  .fault-quick-grid{gap:12px}
+  .fault-quick-buttons{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .fault-quick-button{min-width:0;min-height:48px;padding:12px;font-size:14px;line-height:1.35;overflow-wrap:anywhere}
+  .fault-quick-button.fault-quick-recommended{grid-column:1/-1}
+  .fault-disclosure>summary{min-height:48px;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+  .fault-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+  .fault-editor :is(input:not([type=checkbox]):not([type=radio]),select,textarea),
+  .repair-panel :is(input:not([type=checkbox]):not([type=radio]),select,textarea){min-height:46px;font-size:16px;line-height:1.5}
+  .fault-button-row{align-items:stretch}
+  .fault-button-row>button,.fault-disclosure button[type=submit]{min-height:48px;width:100%;white-space:normal}
+  .repair-card .repair-card-action{min-height:46px;font-size:14px}
+  .repair-card .repair-card-action:focus-visible{outline:3px solid var(--sm-focus,#bfdbfe);outline-offset:2px}
+  .plan-execution-panel .plan-execution-fields,.plan-execution-panel .plan-execution-notes{grid-template-columns:minmax(0,1fr)}
+  .plan-execution-panel .plan-execution-choice{min-height:50px;font-size:15px}
+  .plan-execution-panel .plan-execution-footer{position:sticky;bottom:0;bottom:env(safe-area-inset-bottom,0px);z-index:3;padding:12px 10px;background:#fff;border:1px solid #dde6ef;border-radius:10px;box-shadow:0 -4px 14px rgba(15,23,42,.08);margin-top:16px}
+  /* Do not pin controls over the mobile keyboard while entering a note. */
+  .plan-execution-panel:has(input:focus,textarea:focus,select:focus) .plan-execution-footer{position:static;box-shadow:none}
+  .plan-execution-panel .plan-execution-footer .primary-button{min-height:50px;font-size:15px}
+  .plan-execution-panel .plan-draft-status,.plan-execution-panel .plan-execution-footer .form-message{font-size:13px;line-height:1.5}
+  .plan-focus-toolbar{scroll-margin-top:12px}
+}
+@media(max-width:360px){
+  .fault-quick-buttons{grid-template-columns:minmax(0,1fr)}
+  .fault-quick-button.fault-quick-recommended{grid-column:auto}
+  .fault-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mobile-nav .group-link{font-size:12px}
+}
+@media (max-width:760px){
+  /* Equipment list: task controls stay usable without a 700px table viewport. */
+  .equipment-list-panel .table-wrap{overflow-x:visible;min-width:0}
+  .equipment-list-panel table{width:100%;min-width:0!important;border-collapse:separate}
+  .equipment-list-panel thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .equipment-list-panel tbody{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+  .equipment-list-panel tbody tr{display:block;min-width:0;border:1px solid #d8e3ee;border-radius:12px;background:#fff;padding:13px 14px}
+  .equipment-list-panel tbody td{display:block;min-width:0;border-bottom:1px solid #e9edf3;padding:8px 0;font-size:14px;white-space:normal;overflow-wrap:anywhere}
+  .equipment-list-panel tbody td:first-child{font-size:15px;font-weight:700;padding-top:0}
+  .equipment-list-panel tbody td:last-child{border-bottom:0;padding-bottom:0}
+  .equipment-list-panel tbody td::before{display:block;font-size:12px;font-weight:700;color:#576b7e;margin-bottom:3px}
+  .equipment-list-panel tbody td:nth-child(1)::before{content:'설비 이름'}
+  .equipment-list-panel tbody td:nth-child(2)::before{content:'관리번호'}
+  .equipment-list-panel tbody td:nth-child(3)::before{content:'설비 종류'}
+  .equipment-list-panel tbody td:nth-child(4)::before{content:'위치 / 보관일'}
+  .equipment-list-panel tbody td:nth-child(5)::before{content:'설비 작업'}
+  .equipment-list-panel tbody td[colspan]::before{content:none!important}
+  .equipment-list-panel tbody td:last-child button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;margin:5px 6px 5px 0;padding:10px 13px;font-size:14px;white-space:normal}
+  .equipment-list-panel .equipment-list-tab{min-height:46px;font-size:13px}
+  #equipment-form :is(input,select){min-height:46px;font-size:16px}
+  #equipment-form :is(.primary-button,.secondary-button){min-height:48px;font-size:15px}
+  .equipment-form-panel .field-label{font-size:14px}
+}
+
+/* Common read-only lookup controls; keep business rules in their existing modules. */
+.record-search-bar,.unified-history-filters{display:flex;flex-wrap:wrap;align-items:end;gap:10px;margin:12px 0 14px}
+.record-search-bar label,.unified-history-filters label{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;min-width:135px;flex:1 1 150px}
+.record-search-bar label:has(input[type="search"]){flex:2 1 220px}
+.record-search-bar input,.record-search-bar select,.unified-history-filters input[type="search"]{box-sizing:border-box;width:100%;min-height:44px;padding:9px 12px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;color:#192a35;font:inherit;font-size:15px}
+.record-search-bar input:focus-visible,.record-search-bar select:focus-visible,.unified-history-filters input[type="search"]:focus-visible{outline:3px solid #94c5ef;outline-offset:2px}
+.record-search-bar button{min-height:44px}
+@media(max-width:600px){.record-search-bar label{flex-basis:100%}.record-search-bar button{width:100%;min-height:48px}}
+
 </style></head>
 <body><div class="app-shell"><aside class="sidebar" aria-label="주 메뉴"><a class="brand" href="#dashboard" aria-label="Smart Maintenance 대시보드"><span class="brand-mark" aria-hidden="true">SM</span><span class="brand-text"><strong>Smart Maintenance</strong><small>설비 예방보전</small></span></a><p class="nav-caption">WORKSPACE</p><nav class="primary-nav" aria-label="업무 메뉴"><button class="nav-link group-link is-active" type="button" data-group="home" aria-current="page"><span class="nav-icon" aria-hidden="true">⌂</span>홈</button><button class="nav-link group-link" type="button" data-group="inspection"><span class="nav-icon" aria-hidden="true">▤</span>점검</button><button class="nav-link group-link" type="button" data-group="repairs"><span class="nav-icon" aria-hidden="true">⚒</span>고장·정비</button><button class="nav-link group-link" type="button" data-group="admin"><span class="nav-icon" aria-hidden="true">⚙</span>관리</button></nav><nav class="sidebar-subnav nav-secondary" aria-label="상세 메뉴"><button class="nav-link nav-sub-link is-active" type="button" data-view="dashboard" data-nav-group="home" aria-current="page">오늘의 업무</button><button class="nav-link nav-sub-link" type="button" data-view="schedule" data-nav-group="inspection" hidden>점검 실행</button><button class="nav-link nav-sub-link" type="button" data-view="plans" data-nav-group="inspection" hidden>점검 계획</button><button class="nav-link nav-sub-link" type="button" data-view="history" data-nav-group="inspection" hidden>점검 이력</button><button class="nav-link nav-sub-link" type="button" data-view="faults" data-nav-group="repairs" hidden>고장·정비 관리</button><button class="nav-link nav-sub-link" type="button" data-view="equipment" data-nav-group="admin" hidden>설비 관리</button><button class="nav-link nav-sub-link" type="button" data-view="photos" data-nav-group="admin" hidden>사진 기록</button><button class="nav-link nav-sub-link" type="button" data-view="backup" data-nav-group="admin" hidden>백업·복원</button></nav><div class="sidebar-bottom"><span class="local-indicator" aria-hidden="true"></span><span>설비 데이터 · 이 브라우저에 저장</span></div></aside><div class="main-column"><header class="topbar"><div class="mobile-brand"><span class="brand-mark" aria-hidden="true">SM</span><strong>Smart Maintenance</strong></div><div class="topbar-meta"><span class="status-dot" aria-hidden="true"></span><span>설비 로컬 저장</span><span class="topbar-divider" aria-hidden="true"></span><time id="today">오늘</time></div></header><nav class="mobile-nav" aria-label="업무 메뉴"><button class="nav-link group-link is-active" type="button" data-group="home" aria-current="page">홈</button><button class="nav-link group-link" type="button" data-group="inspection">점검</button><button class="nav-link group-link" type="button" data-group="repairs">고장·정비</button><button class="nav-link group-link" type="button" data-group="admin">관리</button></nav><main class="content">
-<div class="demo-banner">통계는 IndexedDB에 저장된 실제 설비·계획·점검 기록을 기준으로 표시합니다.</div><div class="page-heading"><div><p class="eyebrow">MAINTENANCE WORKSPACE</p><h1 id="page-title">대시보드</h1><p class="page-subtitle" id="page-subtitle">설비와 점검 현황을 한눈에 확인하세요.</p></div><span class="date-chip"><span aria-hidden="true">▦</span><span id="heading-date">오늘</span></span></div>
+<section id="sm-data-panel" class="sm-data-panel" aria-label="브라우저 데이터 보관 현황">
+<h2>기록 보관 현황 <button type="button" class="secondary-button" id="sm-data-refresh">다시 확인</button></h2>
+<p id="sm-data-overview" role="status">브라우저 기록 확인 중…</p>
+<p id="sm-data-origin">로컬 기록은 주소와 브라우저 프로필에 따라 다릅니다.</p>
+<p id="sm-backup-when">백업 확인 기록 없음</p>
+<p id="sm-save-feedback" role="status">저장 결과는 각 작업 화면에서 확인하세요. 이 요약은 저장 성공을 뜻하지 않습니다.</p>
+</section><div class="demo-banner">통계는 IndexedDB에 저장된 실제 설비·계획·점검 기록을 기준으로 표시합니다.</div><div class="page-heading"><div><p class="eyebrow">MAINTENANCE WORKSPACE</p><h1 id="page-title">대시보드</h1><p class="page-subtitle" id="page-subtitle">설비와 점검 현황을 한눈에 확인하세요.</p></div><span class="date-chip"><span aria-hidden="true">▦</span><span id="heading-date">오늘</span></span></div>
 <nav class="workspace-subnav nav-secondary" aria-label="상세 메뉴"><button class="nav-link nav-sub-link is-active" type="button" data-view="dashboard" data-nav-group="home" aria-current="page">오늘의 업무</button><button class="nav-link nav-sub-link" type="button" data-view="schedule" data-nav-group="inspection" hidden>점검 실행</button><button class="nav-link nav-sub-link" type="button" data-view="plans" data-nav-group="inspection" hidden>점검 계획</button><button class="nav-link nav-sub-link" type="button" data-view="history" data-nav-group="inspection" hidden>점검 이력</button><button class="nav-link nav-sub-link" type="button" data-view="faults" data-nav-group="repairs" hidden>고장·정비 관리</button><button class="nav-link nav-sub-link" type="button" data-view="equipment" data-nav-group="admin" hidden>설비 관리</button><button class="nav-link nav-sub-link" type="button" data-view="photos" data-nav-group="admin" hidden>사진 기록</button><button class="nav-link nav-sub-link" type="button" data-view="backup" data-nav-group="admin" hidden>백업·복원</button></nav><section class="view-panel" data-panel="dashboard" aria-labelledby="page-title"><div class="metric-grid"><article class="metric-card"><div class="metric-head"><span class="metric-icon blue" aria-hidden="true">▤</span><span class="metric-label">관리 설비</span></div><strong class="metric-value">—</strong><span class="metric-foot">IndexedDB 조회 대기 중</span></article><article class="metric-card"><div class="metric-head"><span class="metric-icon amber" aria-hidden="true">◷</span><span class="metric-label">7일 이내 예정</span></div><strong class="metric-value">—</strong><span class="metric-foot">오늘 포함 · 오늘부터 7일 뒤까지</span></article><article class="metric-card"><div class="metric-head"><span class="metric-icon blue" aria-hidden="true">▦</span><span class="metric-label">오늘 점검 예정</span></div><strong class="metric-value">—</strong><span class="metric-foot">완료되지 않은 오늘 회차</span></article><article class="metric-card"><div class="metric-head"><span class="metric-icon red" aria-hidden="true">!</span><span class="metric-label">기한 초과</span></div><strong class="metric-value">—</strong><span class="metric-foot">완료되지 않은 지난 회차</span></article><article class="metric-card"><div class="metric-head"><span class="metric-icon amber" aria-hidden="true">↻</span><span class="metric-label">미실시 회차</span></div><strong class="metric-value">—</strong><span class="metric-foot">추적 시작일 이후 완료 기록이 없는 회차</span></article><article class="metric-card"><div class="metric-head"><span class="metric-icon red" aria-hidden="true">⚠</span><span class="metric-label">미해결 고장</span></div><strong class="metric-value">—</strong><span class="metric-foot">종료하지 않은 고장 관리 기록</span></article></div><p id="backup-reminder" class="backup-reminder" hidden></p><section class="dashboard-actions" aria-label="우선 업무 바로가기"><div class="dashboard-action-copy"><strong>우선 처리할 업무</strong><small>기한초과 점검과 미해결 고장을 먼저 확인하세요.</small></div><div class="dashboard-action-links"><button type="button" class="dashboard-action-button dashboard-action-overdue" data-go="schedule"><span>기한초과 점검 확인</span><b id="dashboard-overdue-action-count" aria-live="polite">조회 중</b></button><button type="button" class="dashboard-action-button" data-go="faults"><span>미해결 고장 확인</span><b id="dashboard-fault-action-count" aria-live="polite">조회 중</b></button></div></section><div class="dashboard-grid"><section class="panel due-panel"><div class="panel-heading"><div><p class="eyebrow">UPCOMING</p><h2>점검 현황 및 알림</h2></div><button class="text-button" type="button" data-go="schedule">전체 일정 <span aria-hidden="true">→</span></button></div><div class="due-list"><p class="dashboard-empty">일정을 불러오는 중...</p></div></section><section class="panel activity-panel"><div class="panel-heading"><div><p class="eyebrow">RECENT ACTIVITY</p><h2>최근 점검·정비 기록</h2></div><button class="text-button" type="button" data-go="history">이력 보기 <span aria-hidden="true">→</span></button></div><div class="activity-list"><p class="dashboard-empty">이력을 불러오는 중...</p></div></section></div><section class="panel type-panel"><div class="panel-heading"><div><p class="eyebrow">ASSET MIX</p><h2>설비 종류별 현황</h2></div><span class="subtle-label">활성 설비 기준</span></div><div class="type-list"><span class="dashboard-empty">설비 종류를 불러오는 중...</span></div></section></section>
-<section class="view-panel" data-panel="equipment" hidden aria-labelledby="page-title"><p class="plan-mode-note" hidden>점검 계획을 관리하려면 아래 설비 목록에서 해당 설비의 <strong>점검 계획</strong>을 선택하세요. 신규 설비 등록은 관리 → 설비 관리에서 할 수 있습니다.</p><div class="equipment-layout"><section class="panel equipment-form-panel"><div class="panel-heading"><div><p class="eyebrow">NEW ASSET</p><h2 id="equipment-form-title">설비 등록</h2></div><span class="subtle-label">필수 항목</span></div><form id="equipment-form" novalidate><label class="field-label" for="equipment-name">설비 이름 *</label><input id="equipment-name" name="name" type="text" maxlength="100" required><label class="field-label" for="equipment-code">관리번호 *</label><input id="equipment-code" name="assetCode" type="text" maxlength="50" required><label class="field-label" for="equipment-type">설비 종류 *</label><select id="equipment-type" name="typeId" required><option value="">종류를 불러오는 중...</option></select><label class="field-label" for="equipment-location">위치 *</label><input id="equipment-location" name="location" type="text" maxlength="100" required><button id="equipment-submit" class="primary-button" type="submit" disabled>설비 등록</button><button id="equipment-cancel-edit" class="secondary-button" type="button" hidden>수정 취소</button><p id="equipment-message" class="form-message" role="status"></p></form></section><section class="panel table-panel equipment-list-panel"><div class="panel-heading"><h2 id="equipment-list-title">설비 목록</h2><span id="equipment-count" class="subtle-label">0대</span></div><p class="local-data-note">사용자 등록 데이터</p><div class="equipment-list-tabs"><button class="equipment-list-tab is-active" type="button" id="active-equipment-tab" aria-selected="true" data-equipment-list="active">일반 목록 <span id="active-equipment-count">0대</span></button><button class="equipment-list-tab" type="button" id="archived-equipment-tab" aria-selected="false" data-equipment-list="archived">보관 목록 <span id="archived-equipment-count">0대</span></button></div><div id="active-equipment-view" class="equipment-list-view"><div class="table-wrap"><table><thead><tr><th>설비 이름</th><th>관리번호</th><th>종류</th><th>위치</th><th>작업</th></tr></thead><tbody id="equipment-list"></tbody></table></div></div><div id="archived-equipment-view" class="equipment-list-view" hidden><div class="table-wrap"><table><tbody id="archived-equipment-list"></tbody></table></div></div></section></div><section id="checklist-editor" class="panel checklist-editor-panel" hidden><h2 id="checklist-heading">설비별 점검표</h2><p id="checklist-equipment-meta"></p><button id="checklist-close" type="button">닫기</button><form id="checklist-form"><input id="checklist-item-name"><textarea id="checklist-item-guidance"></textarea><button id="checklist-submit">항목 추가</button><button id="checklist-cancel-edit" type="button" hidden>취소</button><p id="checklist-message"></p></form><span id="checklist-target-note"></span><span id="checklist-item-count"></span><ul id="checklist-items"></ul></section><p class="view-note">보관 설비는 점검 대상에서 제외됩니다.</p></section>
-<section class="view-panel" data-panel="schedule" hidden><section class="panel table-panel schedule-panel"><div class="panel-heading"><div><p class="eyebrow">INSPECTION PLANS</p><h2 id="schedule-heading">점검 예정 현황</h2><p class="schedule-description">활성 설비 일정, 조기 점검 가능 회차 및 실제 미실시 회차를 표시합니다. 계획 추적 시작일 이전 기록은 소급 생성하지 않습니다.</p></div><span id="schedule-count" class="subtle-label">0건</span></div><div class="schedule-toolbar"><label for="schedule-equipment-filter">설비별 필터</label><select id="schedule-equipment-filter"><option value="">전체 활성 설비</option></select></div><p id="schedule-message" class="schedule-message" role="status">일정을 불러오는 중...</p><div class="table-wrap"><table class="schedule-table"><thead><tr><th>설비</th><th>점검 계획·회차</th><th>주기</th><th>예정일·상태</th><th>완료 여부</th></tr></thead><tbody id="schedule-rows"></tbody></table></div></section><div class="notice-card"><strong>점검 주기 안내</strong><p>실제 점검 주기와 법정검사 요건은 제조사 지침 및 적용 기준을 확인하세요.</p></div></section><section class="view-panel" data-panel="history" hidden><div class="panel table-panel"><h2>통합 이력</h2></div></section><section class="view-panel" data-panel="faults" hidden aria-label="고장 관리">
+<section class="view-panel" data-panel="equipment" hidden aria-labelledby="page-title"><p class="plan-mode-note" hidden>점검 계획을 관리하려면 아래 설비 목록에서 해당 설비의 <strong>점검 계획</strong>을 선택하세요. 신규 설비 등록은 관리 → 설비 관리에서 할 수 있습니다.</p><div class="equipment-layout"><section class="panel equipment-form-panel"><div class="panel-heading"><div><p class="eyebrow">NEW ASSET</p><h2 id="equipment-form-title">설비 등록</h2></div><span class="subtle-label">필수 항목</span></div><form id="equipment-form" novalidate><label class="field-label" for="equipment-name">설비 이름 *</label><input id="equipment-name" name="name" type="text" maxlength="100" required><label class="field-label" for="equipment-code">관리번호 *</label><input id="equipment-code" name="assetCode" type="text" maxlength="50" required><label class="field-label" for="equipment-type">설비 종류 *</label><select id="equipment-type" name="typeId" required><option value="">종류를 불러오는 중...</option></select><label class="field-label" for="equipment-location">위치 *</label><input id="equipment-location" name="location" type="text" maxlength="100" required><button id="equipment-submit" class="primary-button" type="submit" disabled>설비 등록</button><button id="equipment-cancel-edit" class="secondary-button" type="button" hidden>수정 취소</button><p id="equipment-message" class="form-message" role="status"></p></form></section><section class="panel table-panel equipment-list-panel"><div class="panel-heading"><h2 id="equipment-list-title">설비 목록</h2><span id="equipment-count" class="subtle-label">0대</span></div><p class="local-data-note">사용자 등록 데이터</p><div class="record-search-bar" role="search" aria-label="설비 검색">
+<label for="equipment-search">설비 검색<input id="equipment-search" type="search" placeholder="설비 이름 · 관리번호 · 위치" autocomplete="off"></label>
+<label for="equipment-type-filter">설비 종류<select id="equipment-type-filter"><option value="">전체 종류</option></select></label>
+<button id="equipment-search-reset" class="secondary-button" type="button">검색 초기화</button></div><div class="equipment-list-tabs"><button class="equipment-list-tab is-active" type="button" id="active-equipment-tab" aria-selected="true" data-equipment-list="active">일반 목록 <span id="active-equipment-count">0대</span></button><button class="equipment-list-tab" type="button" id="archived-equipment-tab" aria-selected="false" data-equipment-list="archived">보관 목록 <span id="archived-equipment-count">0대</span></button></div><div id="active-equipment-view" class="equipment-list-view"><div class="table-wrap"><table><thead><tr><th>설비 이름</th><th>관리번호</th><th>종류</th><th>위치</th><th>작업</th></tr></thead><tbody id="equipment-list"></tbody></table></div></div><div id="archived-equipment-view" class="equipment-list-view" hidden><div class="table-wrap"><table><tbody id="archived-equipment-list"></tbody></table></div></div></section></div><details id="sm-cleanup-panel" class="sm-cleanup-panel">
+<summary>테스트 설비 정리 (선택 영구 삭제)</summary>
+<p><strong>보관과 영구 삭제는 다릅니다.</strong> 잘못 입력한 테스트 설비만 선택하세요. 연결된 점검표·계획·점검·고장·정비·사진 기록도 함께 삭제됩니다. 실제 운영 설비는 삭제하지 말고 보관하세요.</p>
+<p>삭제 전에 관리 → 백업·복원에서 <strong>.smbak 파일</strong>을 만들고 파일을 직접 확인하세요. 이 도구는 복원을 자동 실행하지 않습니다.</p>
+<button id="sm-cleanup-refresh" class="secondary-button" type="button">현재 설비 다시 읽기</button>
+<div id="sm-cleanup-list" aria-label="삭제할 테스트 설비 선택"></div>
+<h3>삭제 대상 미리보기</h3><div id="sm-cleanup-preview" role="status">설비를 선택하면 연결 기록 건수를 보여줍니다.</div>
+<label class="sm-confirm"><input id="sm-cleanup-backup" type="checkbox">기존 기록을 .smbak 파일로 백업하고 실제 다운로드 파일을 확인했습니다.</label>
+<label class="sm-confirm"><input id="sm-cleanup-ack" type="checkbox">선택한 설비 및 연결된 모든 기록이 영구 삭제되는 것을 확인했습니다.</label>
+<label for="sm-cleanup-phrase">확인 문구 <strong>선택 설비 삭제</strong>를 입력하세요.</label>
+<input id="sm-cleanup-phrase" type="text" autocomplete="off" spellcheck="false" placeholder="선택 설비 삭제">
+<button id="sm-cleanup-delete" type="button" class="sm-danger" disabled>선택한 테스트 설비와 연결 기록 영구 삭제</button>
+<p id="sm-cleanup-message" role="status">아직 어떤 데이터도 삭제하지 않았습니다.</p>
+</details><section id="checklist-editor" class="panel checklist-editor-panel" hidden><h2 id="checklist-heading">설비별 점검표</h2><p id="checklist-equipment-meta"></p><button id="checklist-close" type="button">닫기</button><form id="checklist-form"><input id="checklist-item-name"><textarea id="checklist-item-guidance"></textarea><button id="checklist-submit">항목 추가</button><button id="checklist-cancel-edit" type="button" hidden>취소</button><p id="checklist-message"></p></form><span id="checklist-target-note"></span><span id="checklist-item-count"></span><ul id="checklist-items"></ul></section><p class="view-note">보관 설비는 점검 대상에서 제외됩니다.</p></section>
+<section class="view-panel" data-panel="schedule" hidden><section class="panel table-panel schedule-panel"><div class="panel-heading"><div><p class="eyebrow">INSPECTION PLANS</p><h2 id="schedule-heading">점검 예정 현황</h2><p class="schedule-description">활성 설비 일정, 조기 점검 가능 회차 및 실제 미실시 회차를 표시합니다. 계획 추적 시작일 이전 기록은 소급 생성하지 않습니다.</p></div><span id="schedule-count" class="subtle-label">0건</span></div><div class="schedule-toolbar record-search-bar" role="search" aria-label="점검 일정 검색"><label for="schedule-query">일정 검색<input id="schedule-query" type="search" placeholder="설비 · 관리번호 · 점검 계획" autocomplete="off"></label><label for="schedule-equipment-filter">설비별 필터<select id="schedule-equipment-filter"><option value="">전체 활성 설비</option></select></label><label for="schedule-state-filter">진행 상태<select id="schedule-state-filter"><option value="">전체 상태</option><option value="overdue">기한 초과</option><option value="today">오늘 점검</option><option value="early">조기 점검</option><option value="scheduled">예정</option><option value="pending">연동 대기</option><option value="paused">일시정지</option><option value="unset">설정 필요</option></select></label><button id="schedule-filter-reset" type="button" class="secondary-button">검색 초기화</button></div><p id="schedule-message" class="schedule-message" role="status">일정을 불러오는 중...</p><div class="table-wrap"><table class="schedule-table"><thead><tr><th>설비</th><th>점검 계획·회차</th><th>주기</th><th>예정일·상태</th><th>완료 여부</th></tr></thead><tbody id="schedule-rows"></tbody></table></div></section><div class="notice-card"><strong>점검 주기 안내</strong><p>실제 점검 주기와 법정검사 요건은 제조사 지침 및 적용 기준을 확인하세요.</p></div></section><section class="view-panel" data-panel="history" hidden><div class="panel table-panel"><h2>통합 이력</h2></div></section><section class="view-panel" data-panel="faults" hidden aria-label="고장 관리">
 <section class="panel fault-layout"><div class="panel-heading"><div><p class="eyebrow">FAULT MANAGEMENT</p><h2>점검에서 발견된 고장 관리</h2><p>점검 완료와 고장 해결은 별도입니다. 운전 가능 여부는 담당자가 현장 확인 후 기록해야 하며 이 화면은 안전 운전 허가를 대신하지 않습니다.</p></div><span id="faults-count" class="subtle-label">0건</span></div>
-<div class="fault-toolbar"><label for="fault-filter">보기</label><select id="fault-filter"><option value="open">미해결</option><option value="all">전체</option><option value="closed">종료</option></select><button id="fault-refresh" class="secondary-button" type="button">새로 고침</button></div><p id="fault-list-message" role="status" aria-live="polite"></p><div class="fault-table-wrap"><table class="fault-table"><thead><tr><th>설비·증상</th><th>담당자</th><th>우선순위·운전 상태</th><th>기한·재확인</th><th>상태</th><th>열기</th></tr></thead><tbody id="fault-rows"></tbody></table></div></section>
+<div class="fault-toolbar record-search-bar" role="search" aria-label="고장 검색"><label for="fault-query">고장 검색<input id="fault-query" type="search" autocomplete="off" placeholder="설비 · 증상 · 담당자"></label><label for="fault-filter">상태<select id="fault-filter"><option value="open">미해결</option><option value="all">전체</option><option value="closed">종료</option></select></label><label for="fault-priority-filter">우선순위<select id="fault-priority-filter"><option value="">전체 우선순위</option><option value="unassessed">미평가</option><option value="emergency">긴급</option><option value="high">높음</option><option value="normal">보통</option></select></label><button id="fault-filter-reset" class="secondary-button" type="button">검색 초기화</button><button id="fault-refresh" class="secondary-button" type="button">새로 고침</button></div><p id="fault-list-message" role="status" aria-live="polite"></p><div class="fault-table-wrap"><table class="fault-table"><thead><tr><th>설비·증상</th><th>담당자</th><th>우선순위·운전 상태</th><th>기한·재확인</th><th>상태</th><th>열기</th></tr></thead><tbody id="fault-rows"></tbody></table></div></section>
 <section id="fault-detail" class="panel fault-editor" hidden><h2 id="fault-detail-heading">고장 상세</h2><p class="fault-info" id="fault-detail-meta"></p><div class="fault-status-line" id="fault-flags"></div>
 <div id="fault-history-summary"></div><div class="fault-photo-actions"><button id="fault-add-photo" type="button" class="secondary-button" hidden>이 고장에 사진 추가</button></div>
 <form id="fault-update-form"><fieldset><legend>관리 책임자·우선순위·운전 상태·기한 설정</legend><div class="fault-grid">
@@ -283,6 +466,22 @@ body { background:#f3f6fa;color:#10263d; }
     <p id="backup-import-status" class="form-message" role="status"></p>
   </section>
 </section><footer class="page-footer">Smart Maintenance · 점검·정비 이력 관리</footer></main></div></div><script>
+/* Read-only text matching for equipment, schedules, faults and history. */
+(() => {
+  'use strict';
+  const normalize = value => String(value ?? '').normalize('NFC').toLocaleLowerCase('ko-KR').replace(/\s+/g, ' ').trim();
+  const matches = (values, query) => {
+    const terms = normalize(query).split(' ').filter(Boolean);
+    if (!terms.length) return true;
+    const haystack = normalize(Array.isArray(values) ? values.join(' ') : values);
+    return terms.every(term => haystack.includes(term));
+  };
+  const api = Object.freeze({normalize, matches});
+  globalThis.SmartMaintenanceRecordSearch = api;
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+})();
+
+
 /* IndexedDB v6: legacy module requests are transparently upgraded to v6; existing stores and records are preserved. */
 (() => {
   const factory = globalThis.IDBFactory?.prototype;
@@ -420,6 +619,31 @@ let editingAsset = null;
 let currentChecklistAsset = null;
 let currentChecklist = null;
 let editingChecklistItemId = null;
+let equipmentCache = {active: [], archived: []};
+const equipmentSearch = document.getElementById('equipment-search');
+const equipmentTypeFilter = document.getElementById('equipment-type-filter');
+const recordMatches = globalThis.SmartMaintenanceRecordSearch.matches;
+if (equipmentTypeFilter) {
+  for (const type of EQUIPMENT_TYPES) equipmentTypeFilter.add(new Option(type.name, type.id));
+}
+function renderFilteredEquipment() {
+  const query = equipmentSearch?.value || '';
+  const type = equipmentTypeFilter?.value || '';
+  const filtered = rows => rows.filter(asset => (!type || asset.typeId === type) &&
+    recordMatches([asset.name, asset.assetCode, asset.location, EQUIPMENT_TYPES.find(t => t.id === asset.typeId)?.name], query));
+  const active = filtered(equipmentCache.active);
+  const archived = filtered(equipmentCache.archived);
+  equipmentCount.textContent = `${active.length}대 표시 / 전체 ${equipmentCache.active.length}대`;
+  activeEquipmentCount.textContent = `${active.length}/${equipmentCache.active.length}대`;
+  archivedEquipmentCount.textContent = `${archived.length}/${equipmentCache.archived.length}대`;
+  const filtering = Boolean(query.trim() || type);
+  renderEquipmentRows(equipmentList, active, 'active', filtering);
+  renderEquipmentRows(archivedEquipmentList, archived, 'archived', filtering);
+}
+for (const input of [equipmentSearch, equipmentTypeFilter]) input?.addEventListener(input.type === 'search' ? 'input' : 'change', renderFilteredEquipment);
+document.getElementById('equipment-search-reset')?.addEventListener('click', () => {
+  equipmentSearch.value = ''; equipmentTypeFilter.value = ''; renderFilteredEquipment(); equipmentSearch.focus();
+});
 
 function showView(viewName) {
   const page = viewInfo[viewName];
@@ -614,11 +838,8 @@ function loadEquipment() {
 }
 
 function renderEquipment(activeRows, archivedRows) {
-  equipmentCount.textContent = `${activeRows.length}대`;
-  activeEquipmentCount.textContent = `${activeRows.length}대`;
-  archivedEquipmentCount.textContent = `${archivedRows.length}대`;
-  renderEquipmentRows(equipmentList, activeRows, 'active');
-  renderEquipmentRows(archivedEquipmentList, archivedRows, 'archived');
+  equipmentCache = {active: activeRows, archived: archivedRows};
+  renderFilteredEquipment();
 }
 
 function formatArchivedDate(value) {
@@ -628,14 +849,14 @@ function formatArchivedDate(value) {
   return new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
 }
 
-function renderEquipmentRows(listElement, rows, listType) {
+function renderEquipmentRows(listElement, rows, listType, filtering = false) {
   listElement.replaceChildren();
   if (rows.length === 0) {
     const row = document.createElement('tr');
     const cell = document.createElement('td');
     cell.colSpan = 5;
     cell.className = 'empty-table-cell';
-    cell.textContent = listType === 'archived'
+    cell.textContent = filtering ? '검색 조건에 맞는 설비가 없습니다. 검색 초기화를 선택해 보세요.' : listType === 'archived'
       ? '보관된 설비가 없습니다.'
       : '등록된 설비가 없습니다. 왼쪽 양식에서 설비를 등록하세요.';
     row.append(cell);
@@ -1073,6 +1294,7 @@ equipmentForm.addEventListener('submit', async (event) => {
     setEquipmentMessage('유효한 설비 종류를 선택하세요.', true); return;
   }
   equipmentSubmit.disabled = true;
+  globalThis.SmartMaintenanceDataTools?.markSaving?.();
   try {
     if (editingAsset) {
       await updateEquipment(editingAsset.id, { name, typeId, location });
@@ -1086,7 +1308,9 @@ equipmentForm.addEventListener('submit', async (event) => {
       await loadEquipment();
       setEquipmentMessage('설비를 등록하고 이 브라우저에 저장했습니다.');
     }
+    globalThis.SmartMaintenanceDataTools?.markSaved?.();
   } catch (error) {
+    globalThis.SmartMaintenanceDataTools?.markError?.();
     setEquipmentMessage(error instanceof Error ? error.message : '설비를 저장하지 못했습니다. 다시 시도해 주세요.', true);
   } finally {
     equipmentSubmit.disabled = false;
@@ -1173,6 +1397,7 @@ openDatabase()
     await ensureChecklistTemplates();
     equipmentSubmit.disabled = false;
     await loadEquipment();
+    window.dispatchEvent(new Event('smart-maintenance:data-ready'));
   })
   .catch((error) => {
     const text = error instanceof Error ? error.message : 'IndexedDB를 초기화하지 못했습니다.';
@@ -1720,8 +1945,7 @@ window.addEventListener('smart-maintenance:open-photo', event => {
   });
   for (const button of document.querySelectorAll('[data-view="history"]')) {
     button.addEventListener('click', () => {
-      historyEquipmentId = null;
-      expandedRecordId = null;
+      // Keep equipment scoping when revisiting; explicit '전체 이력' clears it.
       renderHistory();
     });
   }
@@ -2370,6 +2594,12 @@ window.addEventListener('smart-maintenance:open-photo', event => {
     panel.append(heading);
 
     const filters = make('div', 'unified-history-filters');
+    const searchLabel = make('label', 'unified-filter-field');
+    searchLabel.append(make('span', '', '기록 검색'));
+    const queryInput = make('input', '');
+    queryInput.id = 'unified-filter-query'; queryInput.type = 'search';
+    queryInput.placeholder = '설비 · 관리번호 · 점검자 · 메모'; queryInput.autocomplete = 'off';
+    searchLabel.append(queryInput); filters.append(searchLabel);
     filters.append(selectField('설비', 'unified-filter-equipment', [['', '전체 설비']]));
     filters.append(selectField('기록 유형', 'unified-filter-type', [
       ['', '전체 유형'], ['inspection', '점검'], ['maintenance', '독립 정비 기록'], ['repair', '고장별 정비 작업']
@@ -2445,6 +2675,7 @@ window.addEventListener('smart-maintenance:open-photo', event => {
   }
 
   const elements = buildHistoryView();
+  const queryFilter = document.getElementById('unified-filter-query');
   const equipmentFilter = document.getElementById('unified-filter-equipment');
   const typeFilter = document.getElementById('unified-filter-type');
   const fromFilter = document.getElementById('unified-filter-from');
@@ -2553,6 +2784,11 @@ window.addEventListener('smart-maintenance:open-photo', event => {
     const record = entry.record;
     const date = recordDate(entry);
     if (equipmentFilter.value && record.equipmentId !== equipmentFilter.value) return false;
+    const related = equipmentRows.find(a => a.id === record.equipmentId);
+    if (!globalThis.SmartMaintenanceRecordSearch.matches([related?.name,related?.assetCode,
+      record.equipmentName,record.assetCode,record.inspector,record.actor,record.owner,
+      record.memo,record.actions,record.workDescription,record.note,record.maintenanceType,
+      ...(Array.isArray(record.checklistItems) ? record.checklistItems.map(i => i.name) : [])],queryFilter.value)) return false;
     if (typeFilter.value && entry.kind !== typeFilter.value) return false;
     if (fromFilter.value && (!date || date < fromFilter.value)) return false;
     if (toFilter.value && (!date || date > toFilter.value)) return false;
@@ -2637,7 +2873,7 @@ window.addEventListener('smart-maintenance:open-photo', event => {
     }
 
     const filtered = records.filter(matchesFilters);
-    count.textContent = `${filtered.length}건`;
+    count.textContent = `${filtered.length}건 / 전체 ${records.length}건`;
     if (!filtered.length) {
       const row = document.createElement('tr');
       const cell = make('td', 'empty-table-cell', '조건에 맞는 점검·정비 이력이 없습니다.');
@@ -2701,10 +2937,11 @@ window.addEventListener('smart-maintenance:open-photo', event => {
     render();
   }
 
-  for (const control of [equipmentFilter, typeFilter, fromFilter, toFilter]) {
-    control.addEventListener('change', () => { expandedKey = null; render(); });
+  for (const control of [queryFilter, equipmentFilter, typeFilter, fromFilter, toFilter]) {
+    control.addEventListener(control === queryFilter ? 'input' : 'change', () => { expandedKey = null; render(); });
   }
   document.getElementById('unified-filter-reset').addEventListener('click', () => {
+    queryFilter.value = '';
     equipmentFilter.value = '';
     typeFilter.value = '';
     fromFilter.value = '';
@@ -2727,22 +2964,19 @@ window.addEventListener('smart-maintenance:open-photo', event => {
       setEquipmentFilter(archivedButton.dataset.historyEquipment);
       return;
     }
-    const historyButton = event.target.closest('[data-view="history"]');
-    if (historyButton) {
-      equipmentFilter.value = '';
-      typeFilter.value = '';
-      fromFilter.value = '';
-      toFilter.value = '';
-      expandedKey = null;
-      render();
-    }
+    // Returning from another view preserves the user's search and date filters.
   });
 
   async function refresh() {
     try {
       await loadData();
     } catch (error) {
-      elements.count.textContent = '불러오기 실패';
+      // Query errors are not an empty result and should never leave old rows looking current.
+      elements.body.replaceChildren();
+      const row = make('tr', '');
+      const cell = make('td', 'empty-table-cell is-error', '저장소 조회 실패 · 새로고침 후 다시 확인하세요.');
+      cell.colSpan = 6; row.append(cell); elements.body.append(row);
+      elements.count.textContent = '조회 실패';
       elements.message.textContent = error instanceof Error ? `통합 이력을 불러오지 못했습니다: ${error.message}` : '통합 이력을 불러오지 못했습니다.';
     }
   }
@@ -4198,6 +4432,7 @@ function isOccurrence(p,due,base){p=globalThis.SmartMaintenancePlanPolicy?.planA
         announce('기존 임시 저장은 다른 점검표 버전의 내용으로 보존했습니다. 현재 입력으로 덮어쓰지 않습니다.', true);
       } else if (loaded.draft) {
         restoreDraft(loaded.draft, scope);
+        window.dispatchEvent(new CustomEvent('smart-maintenance:plan-draft-restored', { detail: { planId: scope.plan.id, equipmentId: scope.equipment.id } }));
         lastSaved.set(scope.draftId, fingerprint(loaded.draft));
         const savedAt = new Date(loaded.draft.updatedAt || Date.now()).toLocaleString('ko-KR');
         announce(`임시 저장 내용을 불러왔습니다 · ${savedAt}`);
@@ -4372,7 +4607,7 @@ function consumeStartApproval(planId){
   return approved;
 }
 globalThis.SmartMaintenanceInspectionNavigation={mayLeave:mayLeaveInspection,approveStartClick,isSaving:()=>saving};
-function sig(items){return JSON.stringify((items||[]).map(i=>[String(i.id||''),String(i.name||'').trim(),String(i.guidance||'').trim()]));}function renderItems(items){itemsBox.replaceChildren();items.forEach((item,index)=>{const fs=el('fieldset','plan-execution-item');fs.append(el('legend','',`${index+1}. ${item.name}`));if(item.guidance)fs.append(el('p','plan-execution-guidance',item.guidance));const choices=el('div','plan-execution-choices');for(const[value,label]of Object.entries(LABELS)){const l=el('label',`plan-execution-choice choice-${value}`),r=document.createElement('input');r.type='radio';r.name=`result-${index}`;r.value=value;r.required=true;l.append(r,el('span','',label));choices.append(l);}fs.append(choices);const m=document.createElement('textarea');m.className='plan-item-memo';m.dataset.itemMemo=index;m.maxLength=1000;m.rows=2;m.placeholder='항목 메모 (선택)';m.setAttribute('aria-label',`${item.name} 메모`);fs.append(m);itemsBox.append(fs);});}async function start(planId,button,due='',missed='false',occurrenceId=''){if(!consumeStartApproval(planId)&&!mayLeaveInspection())return;if(!db)throw Error('저장소 준비 중입니다.');button.disabled=true;try{let t=db.transaction('plans','readonly'),finished=done(t),pP=req(t.objectStore('plans').get(planId)),[plan]=await Promise.all([pP,finished]);if(!plan)throw Error('계획을 찾을 수 없습니다.');if(globalThis.SmartMaintenancePlanPolicy?.isCurrentlyPaused(plan))throw Error('일시정지된 점검 계획입니다. 계획을 재개한 후 점검하세요.');t=db.transaction('equipment','readonly');finished=done(t);const eP=req(t.objectStore('equipment').get(plan.equipmentId)),[equipment]=await Promise.all([eP,finished]);if(!equipment||equipment.status==='archived')throw Error('활성 설비를 찾을 수 없습니다.');if(!Array.isArray(plan.checklistItems)||!plan.checklistItems.length)throw Error('계획별 점검표가 비어 있습니다.');const items=plan.checklistItems.map(i=>({id:String(i.id||''),name:String(i.name||'').trim(),guidance:String(i.guidance||'').trim()}));if(items.some(i=>!i.name))throw Error('점검 항목 이름을 확인하세요.');const rt=db.transaction('inspectionRecords','readonly'),rf=done(rt),recordP=req(rt.objectStore('inspectionRecords').getAll()),[records]=await Promise.all([recordP,rf]),{dueDate,anchorDate}=eng().executionTarget(plan,records,due);context={plan,equipment,items,dueDate,anchorDate,missed:missed==='true',occurrenceId,draftId:`${plan.id}::${equipment.id}::${dueDate||'unscheduled'}`};completed=false;form.reset();dateF.input.value=today();meta.textContent=`${equipment.name} · ${equipment.assetCode} · ${plan.name}${dueDate?` · 예정 회차 ${dueDate}`:''}`;renderItems(items);window.dispatchEvent(new CustomEvent('smart-maintenance:plan-started',{detail:{planId:plan.id,equipmentId:equipment.id,dueDate}}));planStartMessage(button);panel.hidden=false;panel.scrollIntoView({behavior:'smooth',block:'start'});}finally{button.disabled=false;}}function overall(items){return items.reduce((a,b)=>PRIORITY[b.result]>PRIORITY[a]?b.result:a,'normal');}async function commit(record,signature){const tx=db.transaction(['equipment','plans','inspectionRecords','faults'],'readwrite'),finished=done(tx),es=tx.objectStore('equipment'),ps=tx.objectStore('plans'),rs=tx.objectStore('inspectionRecords');let pending=4,equipment,plan,records,faults,failure;const ready=()=>{if(--pending)return;if(!equipment||!plan){failure=Error('설비 또는 계획을 찾을 수 없습니다.');tx.abort();return;}if(equipment.status==='archived'){failure=Error('보관 설비에는 점검 기록을 만들 수 없습니다.');tx.abort();return;}if(globalThis.SmartMaintenancePlanPolicy?.isCurrentlyPaused(plan)){failure=Error('일시정지된 점검 계획에는 완료 기록을 저장할 수 없습니다.');tx.abort();return;}if(plan.equipmentId!==equipment.id||sig(plan.checklistItems)!==signature){failure=Error('설비 또는 점검표가 변경되었습니다. 다시 시작하세요.');tx.abort();return;}if(record.scheduleCompletionEligible&&record.scheduleOccurrenceDueDate&&records.some(r=>r.planId===record.planId&&r.equipmentId===record.equipmentId&&r.scheduleCompletionEligible!==false&&r.scheduleOccurrenceDueDate===record.scheduleOccurrenceDueDate)){failure=Error('이 예정 회차는 이미 완료 기록이 있습니다. 중복 저장하지 않았습니다.');tx.abort();return;}try{const action=window.SmartMaintenanceFaultModel.resolveInspection(record,faults);rs.add(record);if(plan.resumeInspectionRequired&&record.inspectedAt>=plan.resumedOn){ps.put({...plan,resumeInspectionRequired:false,resumeInspectionCompletedAt:record.createdAt});}if(action.action==='add')tx.objectStore('faults').add(action.fault);if(action.action==='put')tx.objectStore('faults').put(action.fault);}catch(error){failure=error;tx.abort();}};const er=es.get(record.equipmentId),pr=ps.get(record.planId),rr=rs.getAll(),fr=tx.objectStore('faults').getAll();er.onsuccess=()=>{equipment=er.result;ready();};pr.onsuccess=()=>{plan=pr.result;ready();};rr.onsuccess=()=>{records=rr.result||[];ready();};fr.onsuccess=()=>{faults=fr.result||[];ready();};er.onerror=pr.onerror=rr.onerror=fr.onerror=()=>tx.abort();try{await finished;}catch(e){throw failure||e;}}function chooseNextDueInspection(currentPlanId){
+function sig(items){return JSON.stringify((items||[]).map(i=>[String(i.id||''),String(i.name||'').trim(),String(i.guidance||'').trim()]));}function renderItems(items){itemsBox.replaceChildren();items.forEach((item,index)=>{const fs=el('fieldset','plan-execution-item');fs.append(el('legend','',`${index+1}. ${item.name}`));if(item.guidance)fs.append(el('p','plan-execution-guidance',item.guidance));const choices=el('div','plan-execution-choices');for(const[value,label]of Object.entries(LABELS)){const l=el('label',`plan-execution-choice choice-${value}`),r=document.createElement('input');r.type='radio';r.name=`result-${index}`;r.value=value;r.required=true;l.append(r,el('span','',label));choices.append(l);}fs.append(choices);const m=document.createElement('textarea');m.className='plan-item-memo';m.dataset.itemMemo=index;m.maxLength=1000;m.rows=2;m.placeholder='항목 메모 (선택)';m.setAttribute('aria-label',`${item.name} 메모`);fs.append(m);itemsBox.append(fs);});}async function start(planId,button,due='',missed='false',occurrenceId='',afterCompletedSave=false){if(afterCompletedSave ? (!completed || !saving) : (!consumeStartApproval(planId)&&!mayLeaveInspection()))return;if(!db)throw Error('저장소 준비 중입니다.');button.disabled=true;try{let t=db.transaction('plans','readonly'),finished=done(t),pP=req(t.objectStore('plans').get(planId)),[plan]=await Promise.all([pP,finished]);if(!plan)throw Error('계획을 찾을 수 없습니다.');if(globalThis.SmartMaintenancePlanPolicy?.isCurrentlyPaused(plan))throw Error('일시정지된 점검 계획입니다. 계획을 재개한 후 점검하세요.');t=db.transaction('equipment','readonly');finished=done(t);const eP=req(t.objectStore('equipment').get(plan.equipmentId)),[equipment]=await Promise.all([eP,finished]);if(!equipment||equipment.status==='archived')throw Error('활성 설비를 찾을 수 없습니다.');if(!Array.isArray(plan.checklistItems)||!plan.checklistItems.length)throw Error('계획별 점검표가 비어 있습니다.');const items=plan.checklistItems.map(i=>({id:String(i.id||''),name:String(i.name||'').trim(),guidance:String(i.guidance||'').trim()}));if(items.some(i=>!i.name))throw Error('점검 항목 이름을 확인하세요.');const rt=db.transaction('inspectionRecords','readonly'),rf=done(rt),recordP=req(rt.objectStore('inspectionRecords').getAll()),[records]=await Promise.all([recordP,rf]),{dueDate,anchorDate}=eng().executionTarget(plan,records,due);context={plan,equipment,items,dueDate,anchorDate,missed:missed==='true',occurrenceId,draftId:`${plan.id}::${equipment.id}::${dueDate||'unscheduled'}`};completed=false;form.reset();dateF.input.value=today();meta.textContent=`${equipment.name} · ${equipment.assetCode} · ${plan.name}${dueDate?` · 예정 회차 ${dueDate}`:''}`;renderItems(items);window.dispatchEvent(new CustomEvent('smart-maintenance:plan-started',{detail:{planId:plan.id,equipmentId:equipment.id,dueDate}}));planStartMessage(button);panel.hidden=false;panel.scrollIntoView({behavior:'smooth',block:'start'});}finally{button.disabled=false;}}function overall(items){return items.reduce((a,b)=>PRIORITY[b.result]>PRIORITY[a]?b.result:a,'normal');}async function commit(record,signature){const tx=db.transaction(['equipment','plans','inspectionRecords','faults'],'readwrite'),finished=done(tx),es=tx.objectStore('equipment'),ps=tx.objectStore('plans'),rs=tx.objectStore('inspectionRecords');let pending=4,equipment,plan,records,faults,failure;const ready=()=>{if(--pending)return;if(!equipment||!plan){failure=Error('설비 또는 계획을 찾을 수 없습니다.');tx.abort();return;}if(equipment.status==='archived'){failure=Error('보관 설비에는 점검 기록을 만들 수 없습니다.');tx.abort();return;}if(globalThis.SmartMaintenancePlanPolicy?.isCurrentlyPaused(plan)){failure=Error('일시정지된 점검 계획에는 완료 기록을 저장할 수 없습니다.');tx.abort();return;}if(plan.equipmentId!==equipment.id||sig(plan.checklistItems)!==signature){failure=Error('설비 또는 점검표가 변경되었습니다. 다시 시작하세요.');tx.abort();return;}if(record.scheduleCompletionEligible&&record.scheduleOccurrenceDueDate&&records.some(r=>r.planId===record.planId&&r.equipmentId===record.equipmentId&&r.scheduleCompletionEligible!==false&&r.scheduleOccurrenceDueDate===record.scheduleOccurrenceDueDate)){failure=Error('이 예정 회차는 이미 완료 기록이 있습니다. 중복 저장하지 않았습니다.');tx.abort();return;}try{const action=window.SmartMaintenanceFaultModel.resolveInspection(record,faults);rs.add(record);if(plan.resumeInspectionRequired&&record.inspectedAt>=plan.resumedOn){ps.put({...plan,resumeInspectionRequired:false,resumeInspectionCompletedAt:record.createdAt});}if(action.action==='add')tx.objectStore('faults').add(action.fault);if(action.action==='put')tx.objectStore('faults').put(action.fault);}catch(error){failure=error;tx.abort();}};const er=es.get(record.equipmentId),pr=ps.get(record.planId),rr=rs.getAll(),fr=tx.objectStore('faults').getAll();er.onsuccess=()=>{equipment=er.result;ready();};pr.onsuccess=()=>{plan=pr.result;ready();};rr.onsuccess=()=>{records=rr.result||[];ready();};fr.onsuccess=()=>{faults=fr.result||[];ready();};er.onerror=pr.onerror=rr.onerror=fr.onerror=()=>tx.abort();try{await finished;}catch(e){throw failure||e;}}function chooseNextDueInspection(currentPlanId){
   // Only already due inspections can be opened automatically. A plan-list DOM order is not a schedule priority.
   const todayDate=today();
   const candidates=[...document.querySelectorAll('#schedule-rows [data-schedule-start]')]
@@ -4384,10 +4619,10 @@ function sig(items){return JSON.stringify((items||[]).map(i=>[String(i.id||''),S
     a.button.dataset.scheduleStart.localeCompare(b.button.dataset.scheduleStart));
   return candidates[0]?.button||null;
 }
-async function save(event){event.preventDefault();if(saving||completed||!context)return;const date=dateF.input.value,inspector=inspectorF.input.value.trim();if(!dateOnly(date)){say('실제 점검 완료일을 확인하세요.',true);return;}if(!inspector){say('점검자를 입력하세요.',true);return;}const current=context,requested=Boolean(current.dueDate),valid=requested&&eng().isOccurrence(current.plan,current.dueDate,current.anchorDate||current.plan.baseDate),within=valid&&eng().withinCompletionWindow(current.plan,current.dueDate,date),outside=requested&&date<current.dueDate&&!within;if(outside){say(`허용 기간 밖입니다. ${current.dueDate} 회차를 완료 처리하지 않습니다.`,true);if(!confirm('정기점검 회차는 완료 처리하지 않고 일반 점검 기록으로 저장할까요?'))return;}const items=current.items.map((item,i)=>({itemId:item.id,name:item.name,guidance:item.guidance,result:form.querySelector(`input[name="result-${i}"]:checked`)?.value||'',memo:form.querySelector(`[data-item-memo="${i}"]`)?.value.trim()||''}));if(!items.length||items.some(i=>!Object.hasOwn(LABELS,i.result))){say('모든 항목을 판정해야 완료할 수 있습니다.',true);return;}const due=within?current.dueDate:null,eligible=current.plan.scheduleBasis==='fixed'?Boolean(due):current.plan.scheduleBasis==='completion'&&(requested?Boolean(within):true),record={id:`plan-inspection-${globalThis.crypto?.randomUUID?.()||`${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`}`,equipmentId:current.equipment.id,equipmentName:current.equipment.name,assetCode:current.equipment.assetCode,equipmentTypeId:current.equipment.typeId,planId:current.plan.id,planName:current.plan.name,scheduleBasis:current.plan.scheduleBasis||null,scheduleOccurrenceDueDate:due,scheduleCompletionEligible:eligible,completedAt:date,inspectedAt:date,inspector,memo:document.getElementById('plan-execution-memo').value.trim(),actions:document.getElementById('plan-execution-actions').value.trim(),overallResult:overall(items),checklistItems:items,cautionFaultRequested:Boolean(document.querySelector('#plan-execution-form [data-fault-caution]')?.checked),faultLinkId:document.querySelector('#plan-execution-form [data-fault-link]')?.value||'',createdAt:new Date().toISOString()};saving=true;submit.disabled=true;say('점검 기록을 저장하고 있습니다.');try{await commit(record,sig(current.items));window.dispatchEvent(new CustomEvent('smart-maintenance:faults-updated'));completed=true;form.querySelectorAll('input,textarea').forEach(x=>x.disabled=true);submit.textContent='저장 완료';say(record.linkedFaultId?'점검 기록과 고장 관리 기록을 저장했습니다. 고장 관리 메뉴에서 확인하세요.':(eligible?'점검 기록을 저장했습니다. 해당 회차 또는 완료일 기준 일정에 반영됩니다.':'점검 기록을 저장했습니다. 정기점검 회차는 완료 처리되지 않았습니다.'));window.dispatchEvent(new CustomEvent('smart-maintenance:plan-completed',{detail:{planId:current.plan.id,equipmentId:current.equipment.id,recordId:record.id,dueDate:due,completedAt:date}}));if(record.overallResult==='normal'){const next=chooseNextDueInspection(current.plan.id);if(next){try{await start(next.dataset.scheduleStart,next,next.dataset.scheduleDueDate,next.dataset.scheduleMissed,next.dataset.scheduleOccurrenceId);say('정상 점검 저장 완료. 기한이 가장 먼저 도래한 점검으로 이동했습니다.');}catch(error){say('정상 점검은 저장했습니다. 다음 점검을 시작하지 못했습니다: '+(error.message||'시작 실패'),true);}}else{say('정상 점검을 저장했습니다. 현재 일정 목록에 바로 진행할 다른 기한 도래 점검이 없습니다.');}}}catch(e){submit.disabled=false;submit.textContent='점검 완료 및 기록 저장';say(e.message||'저장하지 못했습니다.',true);}finally{saving=false;}}function decorate(){for(const row of planList.querySelectorAll('.plan-item')){if(row.querySelector('[data-plan-execution-start]'))continue;const b=el('button','plan-execution-start-button','점검 시작');b.type='button';b.dataset.planExecutionStart=row.dataset.planId;row.append(b);}}planList.addEventListener('click',async e=>{const b=e.target.closest('[data-plan-execution-start]');if(b)try{await start(b.dataset.planExecutionStart,b);}catch(err){panel.hidden=true;planStartMessage(b,err.message||'점검 시작 실패');}});document.getElementById('schedule-rows')?.addEventListener('click',async e=>{const b=e.target.closest('[data-schedule-start]');if(b)try{await start(b.dataset.scheduleStart,b,b.dataset.scheduleDueDate,b.dataset.scheduleMissed,b.dataset.scheduleOccurrenceId);}catch(err){panel.hidden=true;planStartMessage(b,err.message||'점검 시작 실패');}});close.addEventListener('click',()=>{if(!mayLeaveInspection())return;panel.hidden=true;context=null;completed=false;form.reset();form.querySelectorAll('input,textarea').forEach(x=>x.disabled=false);submit.disabled=false;submit.textContent='점검 완료 및 기록 저장';say('');});form.addEventListener('submit',save);new MutationObserver(decorate).observe(planList,{childList:true,subtree:true});open().catch(e=>say(`저장소 오류: ${e.message}`,true));window.addEventListener('beforeunload',e=>{if(hasUnsavedInspectionInput()){e.preventDefault();e.returnValue='';}db?.close();});})();
+async function save(event){event.preventDefault();if(saving||completed||!context)return;const date=dateF.input.value,inspector=inspectorF.input.value.trim();if(!dateOnly(date)){say('실제 점검 완료일을 확인하세요.',true);return;}if(!inspector){say('점검자를 입력하세요.',true);return;}const current=context,requested=Boolean(current.dueDate),valid=requested&&eng().isOccurrence(current.plan,current.dueDate,current.anchorDate||current.plan.baseDate),within=valid&&eng().withinCompletionWindow(current.plan,current.dueDate,date),outside=requested&&date<current.dueDate&&!within;if(outside){say(`허용 기간 밖입니다. ${current.dueDate} 회차를 완료 처리하지 않습니다.`,true);if(!confirm('정기점검 회차는 완료 처리하지 않고 일반 점검 기록으로 저장할까요?'))return;}const items=current.items.map((item,i)=>({itemId:item.id,name:item.name,guidance:item.guidance,result:form.querySelector(`input[name="result-${i}"]:checked`)?.value||'',memo:form.querySelector(`[data-item-memo="${i}"]`)?.value.trim()||''}));if(!items.length||items.some(i=>!Object.hasOwn(LABELS,i.result))){say('모든 항목을 판정해야 완료할 수 있습니다.',true);return;}const due=within?current.dueDate:null,eligible=current.plan.scheduleBasis==='fixed'?Boolean(due):current.plan.scheduleBasis==='completion'&&(requested?Boolean(within):true),record={id:`plan-inspection-${globalThis.crypto?.randomUUID?.()||`${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`}`,equipmentId:current.equipment.id,equipmentName:current.equipment.name,assetCode:current.equipment.assetCode,equipmentTypeId:current.equipment.typeId,planId:current.plan.id,planName:current.plan.name,scheduleBasis:current.plan.scheduleBasis||null,scheduleOccurrenceDueDate:due,scheduleCompletionEligible:eligible,completedAt:date,inspectedAt:date,inspector,memo:document.getElementById('plan-execution-memo').value.trim(),actions:document.getElementById('plan-execution-actions').value.trim(),overallResult:overall(items),checklistItems:items,cautionFaultRequested:Boolean(document.querySelector('#plan-execution-form [data-fault-caution]')?.checked),faultLinkId:document.querySelector('#plan-execution-form [data-fault-link]')?.value||'',createdAt:new Date().toISOString()};saving=true;submit.disabled=true;say('점검 기록을 저장하고 있습니다.');try{await commit(record,sig(current.items));window.dispatchEvent(new CustomEvent('smart-maintenance:faults-updated'));completed=true;form.querySelectorAll('input,textarea').forEach(x=>x.disabled=true);submit.textContent='저장 완료';say(record.linkedFaultId?'점검 기록과 고장 관리 기록을 저장했습니다. 고장 관리 메뉴에서 확인하세요.':(eligible?'점검 기록을 저장했습니다. 해당 회차 또는 완료일 기준 일정에 반영됩니다.':'점검 기록을 저장했습니다. 정기점검 회차는 완료 처리되지 않았습니다.'));window.dispatchEvent(new CustomEvent('smart-maintenance:plan-completed',{detail:{planId:current.plan.id,equipmentId:current.equipment.id,recordId:record.id,dueDate:due,completedAt:date}}));if(record.overallResult==='normal'){const next=chooseNextDueInspection(current.plan.id);if(next){try{await start(next.dataset.scheduleStart,next,next.dataset.scheduleDueDate,next.dataset.scheduleMissed,next.dataset.scheduleOccurrenceId,true);say('정상 점검 저장 완료. 기한이 가장 먼저 도래한 점검으로 이동했습니다.');}catch(error){say('정상 점검은 저장했습니다. 다음 점검을 시작하지 못했습니다: '+(error.message||'시작 실패'),true);}}else{say('정상 점검을 저장했습니다. 현재 일정 목록에 바로 진행할 다른 기한 도래 점검이 없습니다.');}}}catch(e){submit.disabled=false;submit.textContent='점검 완료 및 기록 저장';say(e.message||'저장하지 못했습니다.',true);}finally{saving=false;}}function decorate(){for(const row of planList.querySelectorAll('.plan-item')){if(row.querySelector('[data-plan-execution-start]'))continue;const b=el('button','plan-execution-start-button','점검 시작');b.type='button';b.dataset.planExecutionStart=row.dataset.planId;row.append(b);}}planList.addEventListener('click',async e=>{const b=e.target.closest('[data-plan-execution-start]');if(b)try{await start(b.dataset.planExecutionStart,b);}catch(err){panel.hidden=true;planStartMessage(b,err.message||'점검 시작 실패');}});document.getElementById('schedule-rows')?.addEventListener('click',async e=>{const b=e.target.closest('[data-schedule-start]');if(b)try{await start(b.dataset.scheduleStart,b,b.dataset.scheduleDueDate,b.dataset.scheduleMissed,b.dataset.scheduleOccurrenceId);}catch(err){panel.hidden=true;planStartMessage(b,err.message||'점검 시작 실패');}});close.addEventListener('click',()=>{if(!mayLeaveInspection())return;panel.hidden=true;context=null;completed=false;form.reset();form.querySelectorAll('input,textarea').forEach(x=>x.disabled=false);submit.disabled=false;submit.textContent='점검 완료 및 기록 저장';say('');});form.addEventListener('submit',save);new MutationObserver(decorate).observe(planList,{childList:true,subtree:true});open().catch(e=>say(`저장소 오류: ${e.message}`,true));window.addEventListener('beforeunload',e=>{if(hasUnsavedInspectionInput()){e.preventDefault();e.returnValue='';}db?.close();});})();
 
 
-(()=>{'use strict';const DB='smart-maintenance',VERSION=4,E=()=>globalThis.SmartMaintenanceScheduleEngine,body=document.getElementById('schedule-rows'),filter=document.getElementById('schedule-equipment-filter'),message=document.getElementById('schedule-message'),count=document.getElementById('schedule-count');if(!body||!filter||!message)return;let db,snapshot=[],assets=[],refreshPromise=null;const el=(t,c,x)=>{const n=document.createElement(t);if(c)n.className=c;if(x!==undefined)n.textContent=x;return n;},req=r=>new Promise((ok,no)=>{r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error||Error('IndexedDB 조회 실패'));}),done=t=>new Promise((ok,no)=>{t.oncomplete=ok;t.onabort=()=>no(t.error||Error('조회 취소'));t.onerror=()=>{};});function open(){return new Promise((ok,no)=>{const r=indexedDB.open(DB,VERSION);r.onsuccess=()=>{db=r.result;db.onversionchange=()=>{db.close();db=null;};ok();};r.onerror=()=>no(r.error||Error('저장소 열기 실패'));r.onblocked=()=>no(Error('다른 탭에서 저장소 사용 중입니다.'));});}async function read(){const t=db.transaction(['equipment','plans','inspectionRecords'],'readonly'),finished=done(t),values=await Promise.all(['equipment','plans','inspectionRecords'].map(s=>req(t.objectStore(s).getAll())));await finished;return{equipment:values[0],plans:values[1],records:values[2]};}async function ensureTracking(plans,today){const missing=plans.filter(p=>!E().isDateOnly(p.trackingStartedOn));if(!missing.length)return plans;const t=db.transaction('plans','readwrite'),finished=done(t),store=t.objectStore('plans');for(const p of missing){const r=store.get(p.id);r.onsuccess=()=>{if(r.result&&!E().isDateOnly(r.result.trackingStartedOn))store.put({...r.result,trackingStartedOn:today});};r.onerror=()=>t.abort();}await finished;const ids=new Set(missing.map(p=>p.id));return plans.map(p=>ids.has(p.id)&&!E().isDateOnly(p.trackingStartedOn)?{...p,trackingStartedOn:today}:p);}async function build(){const today=E().todayLocal(),data=await read();data.plans=await ensureTracking(data.plans,today);const byId=new Map(data.equipment.filter(a=>a.status!=='archived').map(a=>[a.id,a])),rows=[];assets=[...byId.values()];for(const p of data.plans){const a=byId.get(p.equipmentId);if(!a)continue;const missed=E().missedDates(p,data.records,today),missedSet=new Set(missed),target={...E().describeTarget(p,data.records,today),plan:p,equipment:a,rowType:'plan'};if(!target.dueDate||!missedSet.has(target.dueDate))rows.push(target);for(const due of E().pausedDates?.(p,today)||[]){rows.push({id:`pause-${p.id}-${due}`,rowType:'paused',kind:'paused',dueDate:due,plan:p,equipment:a,frequency:E().label(p),completionRecord:null});}for(const due of missed){rows.push({id:E().missedId(p.id,due),rowType:'missed',kind:'overdue',dueDate:due,plan:p,equipment:a,frequency:E().label(p),completionRecord:null,missedOccurrenceId:E().missedId(p.id,due)});}}return rows.sort((a,b)=>(a.dueDate||'9999-99-99').localeCompare(b.dueDate||'9999-99-99')||String(a.equipment.name).localeCompare(String(b.equipment.name),'ko')||String(a.plan.name).localeCompare(String(b.plan.name),'ko')||a.rowType.localeCompare(b.rowType));}function dateLabel(v){return E().isDateOnly(v)?new Intl.DateTimeFormat('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:'UTC'}).format(new Date(`${v}T00:00:00Z`)):'날짜 확인 필요';}function status(x,today){if(x.kind==='early'){if(!E().isDateOnly(x.dueDate))return['설정 필요 · 예정일 확인','schedule-status-error'];return[`조기 점검 가능 · ${E().daysBetween(today,x.dueDate)}일 전`,'schedule-status-early'];}return({overdue:['미실시 · 기한 초과','schedule-status-overdue'],today:['오늘 점검','schedule-status-today'],scheduled:['예정','schedule-status-scheduled'],pending:['연동 대기','schedule-status-pending'],unset:['설정 필요','schedule-status-setup'],error:['설정 필요','schedule-status-error'],paused:['일시정지로 미실시','schedule-status-setup']})[x.kind]||['예정','schedule-status-scheduled'];}function render(){const chosen=filter.value;filter.replaceChildren(new Option('전체 활성 설비',''));[...assets].sort((a,b)=>String(a.name).localeCompare(String(b.name),'ko')).forEach(a=>filter.add(new Option(`${a.name} (${a.assetCode||'번호 없음'})`,a.id)));if(assets.some(a=>a.id===chosen))filter.value=chosen;const visible=snapshot.filter(x=>!filter.value||x.equipment.id===filter.value),today=E().todayLocal();body.replaceChildren();count.textContent=`${visible.length}건`;if(!visible.length){const tr=document.createElement('tr'),td=el('td','empty-table-cell','표시할 활성 설비 점검 일정이 없습니다.');td.colSpan=5;tr.append(td);body.append(tr);return;}for(const item of visible){const tr=document.createElement('tr');tr.dataset.planId=item.plan.id;const due=el('td','schedule-due-cell','');if(item.dueDate)due.append(el('span','',dateLabel(item.dueDate)));const[s,cls]=status(item,today);due.append(el('span',`schedule-status ${cls}`,item.kind==='error'&&item.error?`${s} · ${item.error}`:s));if(['early','today','overdue'].includes(item.kind)){const b=el('button','schedule-start-button',item.rowType==='missed'?'미실시 회차 점검':'점검 시작');b.type='button';b.dataset.scheduleStart=item.plan.id;b.dataset.scheduleDueDate=item.dueDate||'';b.dataset.scheduleMissed=item.rowType==='missed'?'true':'false';b.dataset.scheduleOccurrenceId=item.missedOccurrenceId||'';due.append(b);}const completion=item.rowType==='paused'?'일시정지 중 회차 · 일반 미실시로 집계하지 않음':item.rowType==='missed'?'이 회차의 완료 기록 없음':item.completionRecord?`최근 실제 완료 · ${dateLabel(E().recordDate(item.completionRecord))} · ${item.completionRecord.inspector||'점검자 미기록'}`:item.kind==='pending'?'완료 기록 연동 대기':'회차 완료 기록 없음';tr.append(el('td','',`${item.equipment.name} · ${item.equipment.assetCode||'관리번호 없음'}`),el('td','',`${item.plan.name||'이름 없는 계획'}${item.rowType==='missed'?` · 누락 회차 (${dateLabel(item.dueDate)})`:''}`),el('td','',item.frequency),due,el('td','',completion));body.append(tr);}}function refresh(){if(!db)return open().then(()=>refresh()).catch(e=>{message.textContent=`저장소 재연결 실패: ${e.message||'조회 오류'}`;message.classList.add('is-error');return [];});if(refreshPromise)return refreshPromise;refreshPromise=(async()=>{try{snapshot=await build();const misses=snapshot.filter(x=>x.rowType==='missed').length,pauses=snapshot.filter(x=>x.rowType==='paused').length;render();message.classList.remove('is-error');message.textContent=`${snapshot.length}개 일정 · 미실시 회차 ${misses}건 · 일시정지 회차 ${pauses}건 · 계획 추적 시작일 이후만 표시`;window.dispatchEvent(new CustomEvent('smart-maintenance:schedule-updated',{detail:{count:snapshot.length,missedCount:misses}}));return snapshot;}catch(e){message.textContent=`일정을 불러오지 못했습니다: ${e.message||'저장소 오류'}`;message.classList.add('is-error');return[];}finally{refreshPromise=null;}})();return refreshPromise;}filter.addEventListener('change',render);document.querySelectorAll('[data-view="schedule"]').forEach(b=>b.addEventListener('click',()=>void refresh()));window.addEventListener('smart-maintenance:plan-completed',()=>void refresh());window.addEventListener('smart-maintenance:plan-settings-updated',()=>void refresh());window.SmartMaintenanceSchedule={refresh,getSnapshot:()=>snapshot.slice()};open().then(refresh).catch(e=>{message.textContent=`저장소 오류: ${e.message||'일정 조회 실패'}`;message.classList.add('is-error');});window.addEventListener('beforeunload',()=>db?.close());})();
+(()=>{'use strict';const DB='smart-maintenance',VERSION=4,E=()=>globalThis.SmartMaintenanceScheduleEngine,body=document.getElementById('schedule-rows'),filter=document.getElementById('schedule-equipment-filter'),query=document.getElementById('schedule-query'),stateFilter=document.getElementById('schedule-state-filter'),message=document.getElementById('schedule-message'),count=document.getElementById('schedule-count');if(!body||!filter||!message)return;let db,snapshot=[],assets=[],refreshPromise=null;const el=(t,c,x)=>{const n=document.createElement(t);if(c)n.className=c;if(x!==undefined)n.textContent=x;return n;},req=r=>new Promise((ok,no)=>{r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error||Error('IndexedDB 조회 실패'));}),done=t=>new Promise((ok,no)=>{t.oncomplete=ok;t.onabort=()=>no(t.error||Error('조회 취소'));t.onerror=()=>{};});function open(){return new Promise((ok,no)=>{const r=indexedDB.open(DB,VERSION);r.onsuccess=()=>{db=r.result;db.onversionchange=()=>{db.close();db=null;};ok();};r.onerror=()=>no(r.error||Error('저장소 열기 실패'));r.onblocked=()=>no(Error('다른 탭에서 저장소 사용 중입니다.'));});}async function read(){const t=db.transaction(['equipment','plans','inspectionRecords'],'readonly'),finished=done(t),values=await Promise.all(['equipment','plans','inspectionRecords'].map(s=>req(t.objectStore(s).getAll())));await finished;return{equipment:values[0],plans:values[1],records:values[2]};}async function ensureTracking(plans,today){const missing=plans.filter(p=>!E().isDateOnly(p.trackingStartedOn));if(!missing.length)return plans;const t=db.transaction('plans','readwrite'),finished=done(t),store=t.objectStore('plans');for(const p of missing){const r=store.get(p.id);r.onsuccess=()=>{if(r.result&&!E().isDateOnly(r.result.trackingStartedOn))store.put({...r.result,trackingStartedOn:today});};r.onerror=()=>t.abort();}await finished;const ids=new Set(missing.map(p=>p.id));return plans.map(p=>ids.has(p.id)&&!E().isDateOnly(p.trackingStartedOn)?{...p,trackingStartedOn:today}:p);}async function build(){const today=E().todayLocal(),data=await read();data.plans=await ensureTracking(data.plans,today);const byId=new Map(data.equipment.filter(a=>a.status!=='archived').map(a=>[a.id,a])),rows=[];assets=[...byId.values()];for(const p of data.plans){const a=byId.get(p.equipmentId);if(!a)continue;const missed=E().missedDates(p,data.records,today),missedSet=new Set(missed),target={...E().describeTarget(p,data.records,today),plan:p,equipment:a,rowType:'plan'};if(!target.dueDate||!missedSet.has(target.dueDate))rows.push(target);for(const due of E().pausedDates?.(p,today)||[]){rows.push({id:`pause-${p.id}-${due}`,rowType:'paused',kind:'paused',dueDate:due,plan:p,equipment:a,frequency:E().label(p),completionRecord:null});}for(const due of missed){rows.push({id:E().missedId(p.id,due),rowType:'missed',kind:'overdue',dueDate:due,plan:p,equipment:a,frequency:E().label(p),completionRecord:null,missedOccurrenceId:E().missedId(p.id,due)});}}return rows.sort((a,b)=>(a.dueDate||'9999-99-99').localeCompare(b.dueDate||'9999-99-99')||String(a.equipment.name).localeCompare(String(b.equipment.name),'ko')||String(a.plan.name).localeCompare(String(b.plan.name),'ko')||a.rowType.localeCompare(b.rowType));}function dateLabel(v){return E().isDateOnly(v)?new Intl.DateTimeFormat('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:'UTC'}).format(new Date(`${v}T00:00:00Z`)):'날짜 확인 필요';}function status(x,today){if(x.kind==='early'){if(!E().isDateOnly(x.dueDate))return['설정 필요 · 예정일 확인','schedule-status-error'];return[`조기 점검 가능 · ${E().daysBetween(today,x.dueDate)}일 전`,'schedule-status-early'];}return({overdue:['미실시 · 기한 초과','schedule-status-overdue'],today:['오늘 점검','schedule-status-today'],scheduled:['예정','schedule-status-scheduled'],pending:['연동 대기','schedule-status-pending'],unset:['설정 필요','schedule-status-setup'],error:['설정 필요','schedule-status-error'],paused:['일시정지로 미실시','schedule-status-setup']})[x.kind]||['예정','schedule-status-scheduled'];}function render(){const chosen=filter.value;filter.replaceChildren(new Option('전체 활성 설비',''));[...assets].sort((a,b)=>String(a.name).localeCompare(String(b.name),'ko')).forEach(a=>filter.add(new Option(`${a.name} (${a.assetCode||'번호 없음'})`,a.id)));if(assets.some(a=>a.id===chosen))filter.value=chosen;const visible=snapshot.filter(x=>(!filter.value||x.equipment.id===filter.value)&&(!stateFilter.value||(stateFilter.value==='unset'?['unset','error'].includes(x.kind):x.kind===stateFilter.value))&&globalThis.SmartMaintenanceRecordSearch.matches([x.equipment.name,x.equipment.assetCode,x.plan.name,x.frequency],query.value)),today=E().todayLocal();body.replaceChildren();count.textContent=`${visible.length}건 / 전체 ${snapshot.length}건`;if(!visible.length){const tr=document.createElement('tr'),td=el('td','empty-table-cell',snapshot.length?'검색 조건에 맞는 일정이 없습니다. 검색 초기화를 선택해 보세요.':'표시할 활성 설비 점검 일정이 없습니다.');td.colSpan=5;tr.append(td);body.append(tr);return;}for(const item of visible){const tr=document.createElement('tr');tr.dataset.planId=item.plan.id;const due=el('td','schedule-due-cell','');if(item.dueDate)due.append(el('span','',dateLabel(item.dueDate)));const[s,cls]=status(item,today);due.append(el('span',`schedule-status ${cls}`,item.kind==='error'&&item.error?`${s} · ${item.error}`:s));if(['early','today','overdue'].includes(item.kind)){const b=el('button','schedule-start-button',item.rowType==='missed'?'미실시 회차 점검':'점검 시작');b.type='button';b.dataset.scheduleStart=item.plan.id;b.dataset.scheduleDueDate=item.dueDate||'';b.dataset.scheduleMissed=item.rowType==='missed'?'true':'false';b.dataset.scheduleOccurrenceId=item.missedOccurrenceId||'';due.append(b);}const completion=item.rowType==='paused'?'일시정지 중 회차 · 일반 미실시로 집계하지 않음':item.rowType==='missed'?'이 회차의 완료 기록 없음':item.completionRecord?`최근 실제 완료 · ${dateLabel(E().recordDate(item.completionRecord))} · ${item.completionRecord.inspector||'점검자 미기록'}`:item.kind==='pending'?'완료 기록 연동 대기':'회차 완료 기록 없음';tr.append(el('td','',`${item.equipment.name} · ${item.equipment.assetCode||'관리번호 없음'}`),el('td','',`${item.plan.name||'이름 없는 계획'}${item.rowType==='missed'?` · 누락 회차 (${dateLabel(item.dueDate)})`:''}`),el('td','',item.frequency),due,el('td','',completion));body.append(tr);}}function refresh(){if(!db)return open().then(()=>refresh()).catch(e=>{message.textContent=`저장소 재연결 실패: ${e.message||'조회 오류'}`;message.classList.add('is-error');return [];});if(refreshPromise)return refreshPromise;refreshPromise=(async()=>{try{snapshot=await build();const misses=snapshot.filter(x=>x.rowType==='missed').length,pauses=snapshot.filter(x=>x.rowType==='paused').length;render();message.classList.remove('is-error');message.textContent=`${snapshot.length}개 일정 · 미실시 회차 ${misses}건 · 일시정지 회차 ${pauses}건 · 계획 추적 시작일 이후만 표시`;window.dispatchEvent(new CustomEvent('smart-maintenance:schedule-updated',{detail:{count:snapshot.length,missedCount:misses}}));return snapshot;}catch(e){snapshot=[];assets=[];body.replaceChildren();count.textContent='조회 실패';message.textContent=`일정을 불러오지 못했습니다: ${e.message||'저장소 오류'}`;message.classList.add('is-error');return[];}finally{refreshPromise=null;}})();return refreshPromise;}filter.addEventListener('change',render);query.addEventListener('input',render);stateFilter.addEventListener('change',render);document.getElementById('schedule-filter-reset').addEventListener('click',()=>{filter.value='';query.value='';stateFilter.value='';render();query.focus();});document.querySelectorAll('[data-view="schedule"]').forEach(b=>b.addEventListener('click',()=>void refresh()));window.addEventListener('smart-maintenance:plan-completed',()=>void refresh());window.addEventListener('smart-maintenance:plan-settings-updated',()=>void refresh());window.SmartMaintenanceSchedule={refresh,getSnapshot:()=>snapshot.slice()};open().then(refresh).catch(e=>{message.textContent=`저장소 오류: ${e.message||'일정 조회 실패'}`;message.classList.add('is-error');});window.addEventListener('beforeunload',()=>db?.close());})();
 
 
 (()=>{'use strict';const DB='smart-maintenance',V=4,panel=document.querySelector('[data-panel="dashboard"]');if(!panel)return;let db,busy=false,queued=false,fromSchedule=false,rows=[];const engine=()=>globalThis.SmartMaintenanceScheduleEngine;function req(r){return new Promise((ok,no)=>{r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error||Error('IndexedDB 조회 실패'));});}function done(t){return new Promise((ok,no)=>{t.oncomplete=ok;t.onabort=()=>no(t.error||Error('IndexedDB 조회 취소'));t.onerror=()=>{};});}function open(){return new Promise((ok,no)=>{const r=indexedDB.open(DB,V);r.onsuccess=()=>{db=r.result;db.onversionchange=()=>{db.close();db=null;};ok();};r.onerror=()=>no(r.error||Error('저장소 열기 실패'));r.onblocked=()=>no(Error('다른 탭에서 저장소 사용 중'));});}function metric(i,n,u,f){const c=panel.querySelectorAll('.metric-card')[i];if(!c)return;const v=c.querySelector('.metric-value');if(v){v.replaceChildren(document.createTextNode(String(n)));if(u){const s=document.createElement('span');s.textContent=u;v.append(s);}}const foot=c.querySelector('.metric-foot');if(foot)foot.textContent=f;}function actionCounts(overdue,faults){const o=panel.querySelector('#dashboard-overdue-action-count'),f=panel.querySelector('#dashboard-fault-action-count');if(o)o.textContent=overdue===null?'조회 실패':`${overdue}건`;if(f)f.textContent=faults===null?'조회 실패':`${faults}건`;}function unavailable(text='데이터 조회 실패'){actionCounts(null,null);['대','건','건','건','건','건'].forEach((u,i)=>metric(i,'—',u,text));}function plus(value,n){const d=new Date(`${value}T00:00:00Z`);d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10);}function recordDate(r){for(const d of[r.completedAt,r.inspectedAt,r.maintainedAt,r.performedAt])if(typeof d==='string'&&engine()?.isDateOnly(d.slice(0,10)))return d.slice(0,10);return null;}function dateLabel(d){return engine()?.isDateOnly(d)?new Intl.DateTimeFormat('ko-KR',{month:'long',day:'numeric',timeZone:'UTC'}).format(new Date(`${d}T00:00:00Z`)):'날짜 확인 필요';}function distinct(items){const seen=new Set();return items.filter(r=>{const key=`${r.plan?.id||''}::${r.dueDate||''}`;if(seen.has(key))return false;seen.add(key);return true;});}function representativeRows(items){const rank={paused:6,overdue:5,today:4,early:3,scheduled:2,pending:1,unset:1,error:1},byKey=new Map();for(const r of items){const key=`${r.plan?.id||''}::${r.dueDate||''}`,old=byKey.get(key);if(!old||(rank[r.kind]||0)>(rank[old.kind]||0))byKey.set(key,r);}return [...byKey.values()];}function dashboardCounts(items,today,last){const unique=representativeRows(items),overdue=unique.filter(r=>r.kind==='overdue'&&r.dueDate<today),todayDue=unique.filter(r=>r.kind==='today'&&r.dueDate===today),nextSevenDays=unique.filter(r=>r.dueDate>=today&&r.dueDate<=last&&['today','early','scheduled'].includes(r.kind)),missed=unique.filter(r=>r.rowType==='missed'&&r.kind==='overdue'),paused=unique.filter(r=>r.kind==='paused'||r.rowType==='paused');return{unique,overdue,todayDue,nextSevenDays,missed,paused};}if(typeof module!=='undefined'&&module.exports)module.exports={representativeRows,dashboardCounts};function renderDue(items){const list=panel.querySelector('.due-list');if(!list)return;list.replaceChildren();const styles={overdue:['미실시 · 기한 초과','pill-red','overdue'],today:['오늘 점검','pill-amber','today'],early:['조기 점검 가능','pill-green','planned'],scheduled:['예정','pill-blue','planned'],pending:['연동 대기','pill-blue','planned'],unset:['설정 필요','pill-amber','planned'],error:['설정 필요','pill-amber','planned'],paused:['일시정지로 미실시','pill-amber','planned']},shown=representativeRows(items).filter(r=>styles[r.kind]).slice(0,30);if(!shown.length){const p=document.createElement('p');p.className='dashboard-empty';p.textContent='표시할 점검 일정이 없습니다.';list.append(p);return;}for(const r of shown){const[label,pill,markClass]=styles[r.kind],row=document.createElement('article');row.className='due-row';row.dataset.rowType=r.rowType||'plan';const mark=document.createElement('span');mark.className=`due-mark ${markClass}`;mark.setAttribute('aria-hidden','true');const copy=document.createElement('div');copy.className='due-copy';const name=document.createElement('strong');name.textContent=`${r.equipment.name} · ${r.plan.name}`;const detail=document.createElement('span');detail.textContent=`${r.equipment.assetCode||'관리번호 없음'} · ${r.frequency}${r.rowType==='missed'?' · 누락 회차':''}`;copy.append(name,detail);const due=document.createElement('div');due.className='due-date';const badge=document.createElement('span');badge.className=`pill ${pill}`;badge.textContent=label;const date=document.createElement('small');date.textContent=`예정일 ${dateLabel(r.dueDate)}`;due.append(badge,date);row.append(mark,copy,due);list.append(row);}}function renderActivity(records,assets){const list=panel.querySelector('.activity-list');if(!list)return;list.replaceChildren();const names=new Map(assets.map(a=>[a.id,a.name])),items=records.map(r=>({record:r,date:recordDate(r)})).filter(x=>x.date).sort((a,b)=>b.date.localeCompare(a.date)||String(b.record.createdAt||'').localeCompare(String(a.record.createdAt||''))).slice(0,5);if(!items.length){const p=document.createElement('p');p.className='dashboard-empty';p.textContent='저장된 점검·정비 기록이 없습니다.';list.append(p);return;}for(const item of items){const r=item.record,isMaintenance=Boolean(r.maintainedAt||r.performedAt||r.recordType==='maintenance'),result=({failure:'고장',caution:'주의',normal:'정상'})[r.overallResult]||'점검',label=isMaintenance?'정비':result,row=document.createElement('article');row.className='activity-row';const icon=document.createElement('span');icon.className=`result-icon ${label==='정상'||label==='정비'?'result-ok':'result-warn'}`;icon.textContent=label==='정상'?'✓':label==='정비'?'↻':'!';icon.setAttribute('aria-hidden','true');const copy=document.createElement('div'),name=document.createElement('strong');name.textContent=r.equipmentName||names.get(r.equipmentId)||'알 수 없는 설비';const sub=document.createElement('small');sub.textContent=isMaintenance?`${r.maintenanceType||'정비'} · ${r.workDescription||r.memo||'정비 기록'}`:`${label} · 점검자 ${r.inspector||'미기록'}`;copy.append(name,sub);const time=document.createElement('time');time.textContent=dateLabel(item.date);row.append(icon,copy,time);list.append(row);}}function renderTypes(assets,types){const list=panel.querySelector('.type-list');if(!list)return;list.replaceChildren();const labels=new Map(types.map(t=>[t.id,t.name])),counts=new Map();for(const a of assets)counts.set(a.typeId,(counts.get(a.typeId)||0)+1);const sorted=[...counts].sort((a,b)=>String(labels.get(a[0])||a[0]).localeCompare(String(labels.get(b[0])||b[0]),'ko'));for(const[id,n]of sorted){const chip=document.createElement('span');chip.className='type-chip';chip.append(document.createTextNode(labels.get(id)||id));const b=document.createElement('b');b.textContent=String(n);chip.append(b);list.append(chip);}if(!sorted.length){const empty=document.createElement('span');empty.className='dashboard-empty';empty.textContent='등록된 활성 설비가 없습니다.';list.append(empty);}}async function read(){const stores=['equipment','equipmentTypes','inspectionRecords','maintenanceRecords','faults'],t=db.transaction(stores,'readonly'),finished=done(t),requests=stores.map(s=>req(t.objectStore(s).getAll())),[values]=await Promise.all([Promise.all(requests),finished]);return{assets:values[0],types:values[1],inspections:values[2],maintenance:values[3],faults:values[4]};}function faultCount(records){return records.filter(r=>r.overallResult==='failure'||r.result==='failure'||(Array.isArray(r.checklistItems)&&r.checklistItems.some(i=>i.result==='failure'))).length;}async function refresh(){if(!db){try{await open();}catch(e){unavailable();const banner=document.querySelector('.demo-banner');if(banner){banner.textContent=`대시보드 저장소 재연결 실패: ${e.message||'조회 실패'}`;banner.classList.add('is-error');}return;}}if(busy){queued=true;return;}busy=true;queued=false;try{const data=await read(),assets=data.assets.filter(a=>a.status!=='archived'),schedule=globalThis.SmartMaintenanceSchedule,calc=engine();if(!schedule?.refresh||!schedule?.getSnapshot||!calc)throw Error('기존 점검 일정 모듈을 사용할 수 없습니다.');fromSchedule=true;const result=await schedule.refresh();fromSchedule=false;const scheduleMessage=document.getElementById('schedule-message');if(scheduleMessage?.classList.contains('is-error'))throw Error(scheduleMessage.textContent||'일정 계산 실패');rows=Array.isArray(result)?result:schedule.getSnapshot();const today=calc.todayLocal(),last=plus(today,7),{unique,overdue,todayDue,nextSevenDays,missed,paused}=dashboardCounts(rows,today,last);metric(0,assets.length,'대','활성 관리 설비 · 보관 설비 제외');metric(1,nextSevenDays.length,'건','오늘 포함 · 오늘부터 7일 뒤까지');metric(2,todayDue.length,'건','완료되지 않은 오늘 회차');metric(3,overdue.length,'건','미실시 포함 · 다른 점검 지표와 합산 금지');metric(4,missed.length,'건','기한초과에 포함되는 미실시 회차 · 합산 금지');metric(5,data.faults.filter(f=>f.status==='open').length,'건','미해결 고장 · 관리 책임자 확인 필요');actionCounts(overdue.length,data.faults.filter(f=>f.status==='open').length);renderDue(rows);renderActivity([...data.inspections,...data.maintenance],assets);renderTypes(assets,data.types);const banner=document.querySelector('.demo-banner');if(banner){banner.textContent=`IndexedDB 실제 데이터 · 활성 설비 ${assets.length}대 · 고유 점검 회차 ${unique.length}건 · 7일 이내 ${nextSevenDays.length}건 · 미실시 ${missed.length}건(기한초과에 포함) · 일시정지 ${paused.length}건(일반 누락 제외)`;banner.classList.remove('is-error');}}catch(error){fromSchedule=false;unavailable();const banner=document.querySelector('.demo-banner');if(banner){banner.textContent=`실제 대시보드 데이터를 불러오지 못했습니다: ${error.message||'조회 오류'}`;banner.classList.add('is-error');}}finally{fromSchedule=false;busy=false;if(queued)queueMicrotask(()=>void refresh());}}function requestRefresh(){if(busy){queued=true;return;}void refresh();}window.SmartMaintenanceDashboard={refresh,getSnapshot:()=>rows.slice()};for(const event of['smart-maintenance:plan-completed','smart-maintenance:plan-settings-updated','smart-maintenance:dashboard-refresh','smart-maintenance:faults-updated'])window.addEventListener(event,requestRefresh);window.addEventListener('smart-maintenance:schedule-updated',()=>{if(!fromSchedule)requestRefresh();});document.querySelectorAll('[data-view="dashboard"]').forEach(button=>button.addEventListener('click',requestRefresh));open().then(refresh).catch(error=>{unavailable(error.message||'저장소 조회 실패');const banner=document.querySelector('.demo-banner');if(banner){banner.textContent=`대시보드 저장소 오류: ${error.message||'조회 실패'}`;banner.classList.add('is-error');}});window.addEventListener('beforeunload',()=>db?.close());})();
@@ -4716,7 +4951,10 @@ async function save(event){event.preventDefault();if(saving||completed||!context
   function makeTag(parent,label,alert=false) {add(parent,'span',label,alert?'fault-alert':'');}
   function renderList() {
     const body=$('fault-rows');body.replaceChildren();
-    const filtered=faults.filter(f=>$('fault-filter').value==='all'||f.status===$('fault-filter').value)
+    const query=$('fault-query').value,priority=$('fault-priority-filter').value;
+    const filtered=faults.filter(f=>($('fault-filter').value==='all'||f.status===$('fault-filter').value) &&
+      (!priority||f.priority===priority) && globalThis.SmartMaintenanceRecordSearch.matches(
+        [faultName(f),f.assetCode,f.summary,f.owner,...(f.symptomItems||[]).map(i=>i.name)],query))
       .sort((a,b)=>Number(a.status==='closed')-Number(b.status==='closed')||String(b.createdAt).localeCompare(String(a.createdAt)));
     $('faults-count').textContent=`${filtered.length}건 / 전체 ${faults.length}건`;
     for (const f of filtered) {
@@ -4743,7 +4981,7 @@ async function save(event){event.preventDefault();if(saving||completed||!context
       const c6=document.createElement('td');const button=text('button','상세 보기','secondary-button');button.type='button';button.dataset.faultId=f.id;c6.append(button);
       row.append(c1,c2,c3,c4,c5,c6);body.append(row);
     }
-    if(!filtered.length){const tr=document.createElement('tr');const reason=faults.length===0?'고장 기록이 없습니다. 점검 결과에서 「고장」으로 판정하거나 「주의」에서 고장 등록을 선택한 뒤 점검을 저장하면 여기에 표시됩니다.':'선택한 상태에 해당하는 고장이 없습니다. 「전체」로 변경하면 다른 상태의 고장을 확인할 수 있습니다.';const td=text('td',reason);td.colSpan=6;tr.append(td);body.append(tr);}
+    if(!filtered.length){const tr=document.createElement('tr');const reason=faults.length===0?'고장 기록이 없습니다. 점검에서 고장으로 판정하고 기록을 저장하면 여기에 표시됩니다.':'검색 조건에 맞는 고장이 없습니다. 검색 초기화 또는 전체 상태를 선택해 보세요.';const td=text('td',reason);td.colSpan=6;tr.append(td);body.append(tr);}
   }
   function renderDetail() {
     const f=faults.find(item=>item.id===selectedId);
@@ -4860,6 +5098,11 @@ async function save(event){event.preventDefault();if(saving||completed||!context
   globalThis.SmartMaintenanceFaultUI=Object.freeze({updateSelected});
   $('fault-refresh').addEventListener('click',()=>void refreshFromButton());
   $('fault-filter').addEventListener('change',renderList);
+  $('fault-query').addEventListener('input', renderList);
+  $('fault-priority-filter').addEventListener('change', renderList);
+  $('fault-filter-reset').addEventListener('click', () => {
+    $('fault-query').value='';$('fault-filter').value='open';$('fault-priority-filter').value='';renderList();$('fault-query').focus();
+  });
   $('fault-rows').addEventListener('click',e=>{
     const button=e.target.closest('[data-fault-id]');if(!button)return;
     selectedId=button.dataset.faultId;renderDetail();$('fault-detail').scrollIntoView({block:'start',behavior:'smooth'});
@@ -5333,7 +5576,12 @@ async function save(event){event.preventDefault();if(saving||completed||!context
     if(!target || target.hidden || target.closest('[hidden]'))return false;
     for(const [key,details] of wrappers)if(key!=='fault-history-log' && details!==target)details.open=false;
     target.open=true;
-    target.scrollIntoView({behavior:'smooth',block:'start'});
+    // Move keyboard focus into the revealed panel. The original action remains
+    // non-submitting, and the existing form and validation handlers are preserved.
+    const heading = target.querySelector('summary');
+    if (heading) heading.focus({preventScroll:true});
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({behavior:reducedMotion?'instant':'smooth',block:'start'});
     return true;
   }
   window.addEventListener('smart-maintenance:fault-open-form',event=>{
@@ -5829,6 +6077,7 @@ async function save(event){event.preventDefault();if(saving||completed||!context
           localStorage.setItem('smart-maintenance:last-backup-photo-count',String(count));
         }finally{d.close();}
         localStorage.setItem('smart-maintenance:last-backup', new Date().toISOString());
+        window.dispatchEvent(new Event('smart-maintenance:backup-confirmed'));
         refreshReminder();
       }
       say(expStatus, `백업 파일 다운로드 요청 완료: ${out.filename} · 데이터 ${out.count}건. 다운로드 폴더에서 파일을 확인하세요.`);
@@ -6045,6 +6294,354 @@ async function save(event){event.preventDefault();if(saving||completed||!context
     } catch (e) { say(impStatus, `복원 실패: ${e.message}. 트랜잭션의 변경 사항은 취소됩니다.`, true); }
     finally { if (db) db.close(); restoreButton.disabled = false; }
   });
+})();
+
+
+/* Pure deletion planner: no DB writes. Conservative cross-reference safety. */
+(() => {
+  'use strict';
+  const STORES = Object.freeze(['equipmentTypes','checklists','equipment','plans','inspectionRecords','maintenanceRecords','faults','planDrafts','missedOccurrences','photos']);
+  const LABELS = Object.freeze({equipment:'설비',checklists:'설비별 점검표',plans:'점검 계획',inspectionRecords:'점검 이력',maintenanceRecords:'정비 이력',faults:'고장 기록',planDrafts:'점검 임시저장',missedOccurrences:'미실시 기록',photos:'사진'});
+  const REFERENCES = ['equipmentId','planId','recordId','faultId','linkedFaultId','linkedPriorFaultId','sourceInspectionIds','sourcePlanIds'];
+  function plan(data, selectedIds) {
+    if (!Array.isArray(selectedIds) || !selectedIds.length) throw Error('삭제할 테스트 설비를 선택하세요.');
+    const ids = new Set(selectedIds);
+    const equipment = new Map((data.equipment || []).map(row => [row.id,row]));
+    for (const id of ids) if (!equipment.has(id)) throw Error('선택한 설비가 목록에서 변경되었습니다. 다시 조회하세요.');
+    const ownPlanIds = new Set((data.plans||[]).filter(row=>ids.has(row.equipmentId)).map(row=>row.id));
+    const removed = Object.fromEntries(STORES.map(name => [name,new Set()]));
+    for (const [name,rows] of Object.entries(data)) {
+      if (!Object.hasOwn(removed,name)) throw Error('알 수 없는 저장 영역이 있어 삭제를 중단했습니다: '+name);
+      if (!Array.isArray(rows)) throw Error('저장 영역 데이터가 올바르지 않습니다: '+name);
+      for (const row of rows) {
+        if (!row || typeof row.id!=='string') throw Error('기록 ID가 불명확하여 삭제를 중단했습니다: '+name);
+        if (name==='equipmentTypes') continue;
+        if (name==='equipment' ? ids.has(row.id)
+          : (ids.has(row.equipmentId) || (name==='checklists' && [...ids].some(id=>row.id==='equipment-checklist-'+id))
+            || (['inspectionRecords','planDrafts','missedOccurrences'].includes(name) && ownPlanIds.has(row.planId)))) removed[name].add(row.id);
+      }
+    }
+    const removedRecords = new Set(['inspectionRecords','maintenanceRecords','faults'].flatMap(name=>[...removed[name]]));
+    for (const row of data.photos||[]) if (removedRecords.has(row.recordId)) removed.photos.add(row.id);
+    const refersRemoved = (row)=> ids.has(row.equipmentId)||ownPlanIds.has(row.planId)||
+      removedRecords.has(row.recordId)||removedRecords.has(row.faultId)||removedRecords.has(row.linkedFaultId)||
+      removedRecords.has(row.linkedPriorFaultId)||
+      (Array.isArray(row.sourceInspectionIds)&&row.sourceInspectionIds.some(id=>removedRecords.has(id)))||
+      (Array.isArray(row.sourcePlanIds)&&row.sourcePlanIds.some(id=>ownPlanIds.has(id)));
+    for (const [name,rows] of Object.entries(data)) for (const row of rows) {
+      if (removed[name].has(row.id)) continue;
+      if (refersRemoved(row)) throw Error('다른 설비의 기록이 선택한 설비와 연결돼 있어 안전상 삭제할 수 없습니다: '+name+' / '+row.id);
+    }
+    const counts=Object.fromEntries(Object.entries(removed).filter(([,keys])=>keys.size).map(([name,keys])=>[name,keys.size]));
+    return {removed,counts,total:Object.values(counts).reduce((sum,count)=>sum+count,0),equipmentCount:ids.size};
+  }
+  // This signature detects changes relevant to matching and relationships, without copying image bytes.
+  function signature(data) {
+    const parts=[];
+    for (const [name,rows] of Object.entries(data).sort(([a],[b])=>a.localeCompare(b))) {
+      parts.push([name,rows.map(row=>[row.id,row.equipmentId,row.planId,row.recordId,row.faultId,row.linkedFaultId,
+        row.linkedPriorFaultId,row.updatedAt,row.modifiedAt,row.status,row.assetCode,
+        row.sourceInspectionIds,row.sourcePlanIds]).sort((a,b)=>String(a[0]).localeCompare(String(b[0])))]);
+    }
+    return JSON.stringify(parts);
+  }
+  globalThis.SmartMaintenanceCleanupModel=Object.freeze({STORES,LABELS,REFERENCES,plan,signature});
+})();
+
+
+/* Data visibility and opt-in test-equipment cleanup. IndexedDB schema is unchanged. */
+(() => {
+  'use strict';
+  const model=globalThis.SmartMaintenanceCleanupModel;
+  const $=id=>document.getElementById(id);
+  if (!model || !$('sm-data-overview') || !$('sm-cleanup-panel')) return;
+  const REQUIRED=model.STORES;
+  let db=null, snapshot=null, selected=new Set(), pending=null, busy=false;
+  const say=(id,value)=>{const el=$(id);if(el)el.textContent=value;};
+  const req=r=>new Promise((resolve,reject)=>{r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error||Error('저장 영역 요청 실패'));});
+  function done(t){return new Promise((resolve,reject)=>{t.oncomplete=()=>resolve();t.onabort=()=>reject(t.error||Error('거래가 취소되었습니다.'));});}
+  async function connect(){
+    if (!indexedDB || typeof indexedDB.databases!=='function') throw Error('IndexedDB 목록 확인을 지원하는 Chrome/Edge가 필요합니다.');
+    const listed=await indexedDB.databases();
+    if(!listed.some(x=>x.name==='smart-maintenance'))throw Error('이 주소와 브라우저 프로필에 기존 저장소가 없습니다.');
+    if(db) return db;
+    return new Promise((resolve,reject)=>{
+      const r=indexedDB.open('smart-maintenance',6);
+      r.onupgradeneeded=()=>{r.transaction?.abort();reject(Error('기존 v6 저장소가 아니므로 안전하게 중단했습니다.'));};
+      r.onsuccess=()=>{db=r.result;db.onversionchange=()=>{db.close();db=null;say('sm-data-overview','저장소 구조가 변경됐습니다. 새로고침해 주세요.');};resolve(db);};
+      r.onerror=()=>reject(r.error||Error('DB 연결 실패'));
+      r.onblocked=()=>reject(Error('다른 탭에서 저장소를 사용 중입니다.'));
+    });
+  }
+  function names(connection){const names=[...connection.objectStoreNames];const extra=names.filter(name=>!REQUIRED.includes(name));
+    if(extra.length)throw Error('알 수 없는 저장 영역: '+extra.join(', '));
+    for(const required of REQUIRED)if(!names.includes(required))throw Error('누락된 저장 영역: '+required);
+    return names;
+  }
+  async function readAll(connection){
+    const all=names(connection),t=connection.transaction(all,'readonly'),completed=done(t);
+    const records=await Promise.all(all.map(async name=>[name,await req(t.objectStore(name).getAll())]));
+    await completed;return Object.fromEntries(records);
+  }
+  function backupText(){
+    let raw=null;try{raw=localStorage.getItem('smart-maintenance:last-backup');}catch(_){return '백업 날짜: 확인 불가';}
+    const when=raw?new Date(raw):null;
+    return when&&!Number.isNaN(when.getTime())?'마지막 백업 확인: '+when.toLocaleString('ko-KR'):'백업 확인 기록 없음';
+  }
+  function overview(data){const count=name=>(data[name]||[]).length;
+    say('sm-data-overview',`현재 브라우저 기록 · 설비 ${count('equipment')}대 / 점검 ${count('inspectionRecords')}건 / 고장 ${count('faults')}건 / 정비 ${count('maintenanceRecords')}건 / 사진 ${count('photos')}건`);
+    say('sm-backup-when',backupText());
+    say('sm-data-origin','저장 주소: '+location.origin+' · 다른 주소/프로필/PC와 자동 동기화되지 않습니다.');
+  }
+  function safeText(tag,txt,cls){const el=document.createElement(tag);el.textContent=txt;if(cls)el.className=cls;return el;}
+  function showList(data){
+    const div=$('sm-cleanup-list');div.replaceChildren();
+    const assets=(data.equipment||[]).slice().sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),'ko'));
+    if(!assets.length){div.append(safeText('p','등록된 설비가 없습니다.'));return;}
+    for(const asset of assets){const label=document.createElement('label');label.className='sm-cleanup-item';const input=document.createElement('input');input.type='checkbox';input.value=asset.id;input.checked=selected.has(asset.id);input.addEventListener('change',()=>{if(input.checked)selected.add(asset.id);else selected.delete(asset.id);preview();});
+      const info=document.createElement('span');info.append(safeText('strong',asset.name||'(이름 없음)'),safeText('small',`관리번호: ${asset.assetCode||'없음'} · ${asset.status==='archived'?'보관':'운영'} · ${asset.location||'위치 미기재'}`));label.append(input,info);div.append(label);}
+  }
+  function allowDelete(){const button=$('sm-cleanup-delete');button.disabled=busy||!pending||!selected.size||
+    !$('sm-cleanup-backup').checked||!$('sm-cleanup-ack').checked||$('sm-cleanup-phrase').value.trim()!=='선택 설비 삭제';}
+  function preview(){pending=null;if(!snapshot){allowDelete();return;}
+    try{if(!selected.size){say('sm-cleanup-preview','삭제할 테스트 설비를 선택해 주세요.');}
+      else{const p=model.plan(snapshot,[...selected]);pending={plan:p,ids:[...selected],signature:model.signature(snapshot)};
+        say('sm-cleanup-preview',[`선택 설비 ${p.equipmentCount}대 · 삭제 예정 총 ${p.total}건`,...Object.entries(p.counts).map(([key,value])=>`• ${model.LABELS[key]||key} ${value}건`),'선택하지 않은 설비와 기본 설정은 유지됩니다.'].join('\n'));}
+    }catch(e){say('sm-cleanup-preview','삭제 대상 확인 실패: '+e.message);}allowDelete();
+  }
+  async function refresh(){if(busy)return;busy=true;allowDelete();say('sm-data-overview','브라우저 저장소에서 기록 확인 중…');
+    try{const connection=await connect();snapshot=await readAll(connection);selected=new Set([...selected].filter(id=>snapshot.equipment.some(x=>x.id===id)));overview(snapshot);showList(snapshot);preview();say('sm-cleanup-message','현재 기록을 읽었습니다. 아직 어떤 데이터도 삭제하지 않았습니다.');}
+    catch(e){snapshot=null;pending=null;say('sm-data-overview','기록 조회 실패: '+e.message);say('sm-cleanup-message','오류: '+e.message);}finally{busy=false;allowDelete();}}
+  async function removeSelected(){if(busy||!pending||$('sm-cleanup-delete').disabled)return;
+    const {ids,signature,plan}=pending;
+    if(!confirm(`선택한 테스트 설비 ${ids.length}대 및 연결 기록 총 ${plan.total}건을 영구 삭제합니다.\n백업 파일을 실제로 보관했고 삭제 대상을 확인했습니까?`))return;
+    busy=true;allowDelete();say('sm-cleanup-message','변경 여부를 확인하고 있습니다. 삭제 완료 전 창을 닫지 마세요.');
+    try{
+      const connection=await connect();const all=names(connection);
+      const deleted=await new Promise((resolve,reject)=>{
+        const t=connection.transaction(all,'readwrite'),now={},completedNames=[];let failed=null;
+        t.oncomplete=()=>resolve(plan.total);
+        t.onabort=()=>reject(failed||t.error||Error('삭제가 취소됐습니다. 기록은 변경되지 않았습니다.'));
+        for(const name of all){const r=t.objectStore(name).getAll();r.onsuccess=()=>{
+          now[name]=r.result;completedNames.push(name);
+          if(completedNames.length===all.length){try{
+            if(model.signature(now)!==signature)throw Error('미리보기 이후 기록이 변경됐습니다. 새로 조회해 주세요.');
+            const actual=model.plan(now,ids);
+            if(actual.total!==plan.total || JSON.stringify(actual.counts)!==JSON.stringify(plan.counts))throw Error('삭제 예정 건수가 변경됐습니다.');
+            for(const [store,keys] of Object.entries(actual.removed))for(const key of keys)t.objectStore(store).delete(key);
+          }catch(error){failed=error;t.abort();}}
+        };r.onerror=()=>{failed=r.error||Error('삭제 전 조회 실패');t.abort();};}
+      });
+      selected.clear();pending=null;$('sm-cleanup-phrase').value='';$('sm-cleanup-ack').checked=false;$('sm-cleanup-backup').checked=false;
+      snapshot=await readAll(connection);showList(snapshot);overview(snapshot);preview();
+      say('sm-cleanup-message',`삭제 완료: 테스트 설비 ${ids.length}대와 연결 기록 총 ${deleted}건을 삭제했습니다. 화면에 남아 있는 이전 설비 목록은 앱을 새로고침하면 갱신됩니다.`);
+      window.dispatchEvent(new Event('smart-maintenance:data-changed'));
+    }catch(e){say('sm-cleanup-message','삭제 미완료: '+e.message+' 삭제 완료로 표시하지 않습니다.');}
+    finally{busy=false;allowDelete();}
+  }
+  $('sm-data-refresh').addEventListener('click',refresh);
+  $('sm-cleanup-refresh').addEventListener('click',refresh);
+  $('sm-cleanup-delete').addEventListener('click',removeSelected);
+  for(const id of ['sm-cleanup-backup','sm-cleanup-ack','sm-cleanup-phrase'])$(id).addEventListener(id==='sm-cleanup-phrase'?'input':'change',allowDelete);
+  $('sm-cleanup-panel').addEventListener('toggle',()=>{if($('sm-cleanup-panel').open)refresh();});
+  window.addEventListener('smart-maintenance:data-changed',()=>{if(!busy)refresh();});
+  window.addEventListener('smart-maintenance:data-ready',()=>{if(!busy)refresh();});
+  window.addEventListener('smart-maintenance:backup-confirmed',()=>say('sm-backup-when',backupText()));
+  window.addEventListener('beforeunload',()=>db?.close());
+  globalThis.SmartMaintenanceDataTools=Object.freeze({refresh,markSaved:()=>{say('sm-save-feedback','설비 변경사항 저장 완료 · 이 브라우저의 IndexedDB');window.dispatchEvent(new Event('smart-maintenance:data-changed'));},markSaving:()=>say('sm-save-feedback','설비 변경사항 저장 중…'),markError:()=>say('sm-save-feedback','설비 저장 실패 · 아래 오류 내용을 확인해 주세요.')});
+  // Wait for app.js bootstrap so the v6 version bridge and stores have initialized.
+  window.addEventListener('load',()=>{refresh();});
+})();
+
+
+(() => {
+  'use strict';
+  const valid = new Set(['normal', 'caution', 'failure']);
+  function progress(results) {
+    const values = Array.isArray(results) ? results : [];
+    const judged = values.filter(value => valid.has(value)).length;
+    return { judged, total: values.length, remaining: values.length - judged, complete: values.length > 0 && judged === values.length };
+  }
+  function nextIncomplete(results, fromIndex) {
+    if (!Array.isArray(results) || results.length === 0) return -1;
+    const n = results.length;
+    for (let distance = 1; distance <= n; distance += 1) {
+      const index = (fromIndex + distance + n) % n;
+      if (!valid.has(results[index])) return index;
+    }
+    return -1;
+  }
+  function firstIncomplete(results) {
+    return nextIncomplete(results, -1);
+  }
+  globalThis.SmartMaintenancePlanFocusModel = Object.freeze({ progress, nextIncomplete, firstIncomplete });
+})();
+
+
+(() => {
+  'use strict';
+  const model = globalThis.SmartMaintenancePlanFocusModel;
+  if (!model) return;
+  const panel = document.getElementById('plan-execution-panel');
+  const itemsBox = document.getElementById('plan-execution-items');
+  const form = document.getElementById('plan-execution-form');
+  if (!panel || !itemsBox || !form) return;
+
+  const labelText = { normal: '정상', caution: '주의', failure: '고장' };
+  const element = (tag, className, text) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  };
+  let currentIndex = 0;
+  let fullList = false;
+  let complete = false;
+  let saved = false;
+
+  // This view controls only presentation. Every inspection input remains in the
+  // original form so that draft/commit/validation keep reading all answers.
+  const toolbar = element('section', 'plan-focus-toolbar');
+  toolbar.setAttribute('aria-label', '점검 진행 현황');
+  const heading = element('div', 'plan-focus-heading');
+  const title = element('strong', '', '점검 진행 현황');
+  const count = element('span', 'plan-focus-count', '0 / 0 판정 완료');
+  heading.append(title, count);
+  const progress = element('progress', 'plan-focus-progress');
+  progress.max = 1;
+  progress.value = 0;
+  progress.setAttribute('aria-label', '점검 항목 판정 진행률');
+  const controls = element('div', 'plan-focus-controls');
+  const selectLabel = element('label', 'plan-focus-select-label', '항목 선택');
+  const jump = element('select', 'plan-focus-jump');
+  jump.setAttribute('aria-label', '점검 항목 바로 이동');
+  selectLabel.append(jump);
+  const toggle = element('button', 'secondary-button plan-focus-toggle', '전체 목록 보기');
+  toggle.type = 'button';
+  toggle.setAttribute('aria-pressed', 'false');
+  controls.append(selectLabel, toggle);
+  toolbar.append(heading, progress, controls);
+  itemsBox.before(toolbar);
+
+  const navigation = element('div', 'plan-focus-navigation');
+  const previous = element('button', 'secondary-button plan-focus-previous', '이전 항목');
+  const next = element('button', 'secondary-button plan-focus-next', '다음 미완료 항목');
+  previous.type = next.type = 'button';
+  const summary = element('p', 'plan-focus-current', '');
+  summary.setAttribute('aria-live', 'polite');
+  navigation.append(previous, summary, next);
+  itemsBox.after(navigation);
+
+  const hint = element('p', 'plan-focus-hint', '');
+  hint.setAttribute('role', 'status');
+  hint.setAttribute('aria-live', 'polite');
+  navigation.after(hint);
+
+  function items() {
+    return [...itemsBox.querySelectorAll('fieldset.plan-execution-item')];
+  }
+  function answers() {
+    return items().map((_, index) => form.querySelector(`input[name="result-${index}"]:checked`)?.value || '');
+  }
+  function textOf(item, index) {
+    const label = item.querySelector('legend')?.textContent?.trim() || `항목 ${index + 1}`;
+    return label.replace(/^\d+\.\s*/, '').trim() || `항목 ${index + 1}`;
+  }
+  function update() {
+    const all = items();
+    if (!all.length) {
+      toolbar.hidden = navigation.hidden = hint.hidden = true;
+      return;
+    }
+    currentIndex = Math.min(Math.max(0, currentIndex), all.length - 1);
+    toolbar.hidden = navigation.hidden = hint.hidden = false;
+    const values = answers();
+    const state = model.progress(values);
+    count.textContent = `${state.judged} / ${state.total} 판정 완료 · ${state.remaining}개 남음`;
+    progress.max = state.total;
+    progress.value = state.judged;
+    const options = all.map((item, index) => {
+      const opt = new Option(`${index + 1}. ${textOf(item, index)} · ${labelText[values[index]] || '미판정'}`, String(index));
+      return opt;
+    });
+    jump.replaceChildren(...options);
+    jump.value = String(currentIndex);
+    for (let index = 0; index < all.length; index += 1) {
+      const field = all[index];
+      field.hidden = !fullList && index !== currentIndex;
+      field.classList.toggle('is-current', index === currentIndex);
+    }
+    summary.textContent = fullList ? `전체 ${all.length}개 항목 표시 중` : `${currentIndex + 1} / ${all.length} 항목`;
+    toggle.textContent = fullList ? '한 항목씩 보기' : '전체 목록 보기';
+    toggle.setAttribute('aria-pressed', String(fullList));
+    previous.disabled = saved || fullList || all.length < 2 || currentIndex === 0;
+    const nextIndex = model.nextIncomplete(values, currentIndex);
+    next.disabled = saved || fullList || nextIndex === -1;
+    jump.disabled = saved;
+    toggle.disabled = saved;
+    const current = values[currentIndex];
+    if (saved) hint.textContent = '이 점검은 최종 저장됐습니다.';
+    else if (state.complete) hint.textContent = '모든 항목의 판정이 끝났습니다. 전체 항목과 메모를 확인한 뒤 아래의 완료 저장 버튼을 눌러 주세요. 아직 최종 저장된 것은 아닙니다.';
+    else if (current === 'caution' || current === 'failure') hint.textContent = `${labelText[current]} 판정입니다. 이 항목의 메모와 하단 고장 관리 연결 내용을 확인하세요. 자동으로 다음 항목으로 넘어가지 않습니다.`;
+    else if (fullList) hint.textContent = '전체 항목을 보면서 수정할 수 있습니다. 항목을 선택하면 다시 집중 입력 화면으로 돌아옵니다.';
+    else hint.textContent = '정상을 선택하면 다음 미완료 항목으로 이동합니다. 마지막 항목 판정 후에도 최종 저장 버튼을 눌러야 합니다.';
+  }
+  function show(index, focus = false) {
+    const all = items();
+    if (index < 0 || index >= all.length || saved) return;
+    currentIndex = index;
+    if (fullList) fullList = false;
+    update();
+    if (focus) {
+      all[index].scrollIntoView({ block: 'nearest', behavior: 'auto' });
+      all[index].querySelector('input[type="radio"]')?.focus({ preventScroll: true });
+    }
+  }
+  function initialize() {
+    saved = false;
+    complete = false;
+    fullList = false;
+    currentIndex = 0;
+    // New plans are rendered just before 'plan-started' dispatch. Preserve the
+    // unsaved draft inputs for autosave to restore asynchronously afterward.
+    show(0);
+  }
+  toggle.addEventListener('click', () => { if (saved) return; fullList = !fullList; update(); });
+  jump.addEventListener('change', () => show(Number(jump.value), true));
+  previous.addEventListener('click', () => show(currentIndex - 1, true));
+  next.addEventListener('click', () => show(model.nextIncomplete(answers(), currentIndex), true));
+  itemsBox.addEventListener('change', (event) => {
+    const radio = event.target.closest?.('input[type="radio"]');
+    if (!radio || saved || !panel || panel.hidden) return;
+    const match = /^result-(\d+)$/.exec(radio.name || '');
+    if (!match) return;
+    const index = Number(match[1]);
+    const all = items();
+    if (!Number.isInteger(index) || index >= all.length) return;
+    currentIndex = index;
+    update();
+    if (radio.value === 'normal' && !fullList) {
+      const target = model.nextIncomplete(answers(), index);
+      if (target !== -1) show(target, true);
+    } else if ((radio.value === 'caution' || radio.value === 'failure') && !fullList) {
+      // Details remain visible, but note entry stays optional under the
+      // existing inspection policy. Do not change commit validation here.
+      all[index].querySelector('textarea')?.focus({ preventScroll: true });
+    }
+  });
+  window.addEventListener('smart-maintenance:plan-started', initialize);
+  window.addEventListener('smart-maintenance:plan-draft-restored', (event) => {
+    const state = event.detail || {};
+    if (state.planId && panel.hidden === false && items().length) {
+      currentIndex = Math.max(0, model.firstIncomplete(answers()));
+      fullList = false;
+      update();
+    }
+  });
+  window.addEventListener('smart-maintenance:plan-completed', () => { saved = true; complete = true; update(); });
+  // The editor remains available in the same DOM when hidden by menu navigation.
+  // Its saved inputs are neither removed nor rewritten by the focused view.
+  toolbar.hidden = navigation.hidden = hint.hidden = true;
 })();
 
 
