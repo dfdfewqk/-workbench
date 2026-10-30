@@ -323,6 +323,20 @@
   // Keep its autosave scope aligned with that occurrence instead of 'unscheduled'.
   window.addEventListener('smart-maintenance:plan-started', (event) => {
     const detail = event.detail || {};
+    if (detail.autoAdvance) {
+      // A programmatic next-plan transition has no click from which to seed
+      // the draft scope. The old completed-plan cleanup may still be awaiting
+      // IndexedDB, so use a distinct token and leave it untouched.
+      clearTimeout(timer);
+      current = {planId: detail.planId, dueDate: detail.dueDate || '',
+        token: ++openToken, preparingToken: null, preparedToken: null};
+      writeError = null;
+      const seed = current;
+      // The plan-execution panel is already open when auto-advancing, so the
+      // hidden-attribute observer won't run a second time. Prepare explicitly.
+      queueMicrotask(() => { if (seed.token === openToken) void prepareDraft(seed); });
+      return;
+    }
     if (current && !current.plan && current.planId === detail.planId) {
       current.dueDate = detail.dueDate || '';
     }
@@ -331,25 +345,29 @@
   window.addEventListener('smart-maintenance:plan-completed', async (event) => {
     const detail = event.detail || {};
     if (!current?.plan || current.plan.id !== detail.planId || current.equipment.id !== detail.equipmentId) return;
+    // Freeze the completed scope before awaiting. A new plan can start during
+    // cleanup; never delete its draft or clear its active scope by accident.
+    const finishedScope = current;
+    const finishedWrite = pendingWrite;
     clearTimeout(timer);
     try {
-      await pendingWrite.catch(() => {});
-      const removed = await STORE.remove(await openDatabase(), makeDraft(current));
-      announce(removed
-        ? '점검 완료 기록이 저장되어 해당 임시 저장을 정리했습니다.'
-        : writeError
-          ? '점검은 저장됐지만 임시 저장 정리는 실패했습니다. 임시 데이터가 남아 있을 수 있습니다.'
-          : '점검 완료 기록이 저장되었습니다. 대응하는 임시 저장은 없었습니다.', Boolean(writeError));
-      lastSaved.delete(current.draftId);
-      queued.delete(current.draftId);
-      current = null;
-    } catch (error) {
-      announce(`점검은 완료 저장됐지만 임시 저장 정리에 실패했습니다: ${error.message || '정리 오류'}`, true);
-      if (current?.draftId) {
-        lastSaved.delete(current.draftId);
-        queued.delete(current.draftId);
+      await finishedWrite.catch(() => {});
+      const removed = await STORE.remove(await openDatabase(), makeDraft(finishedScope));
+      if (current === finishedScope) {
+        announce(removed
+          ? '점검 완료 기록이 저장되어 해당 임시 저장을 정리했습니다.'
+          : writeError
+            ? '점검은 저장됐지만 임시 저장 정리는 실패했습니다. 임시 데이터가 남아 있을 수 있습니다.'
+            : '점검 완료 기록이 저장되었습니다. 대응하는 임시 저장은 없었습니다.', Boolean(writeError));
       }
-      current = null;
+      lastSaved.delete(finishedScope.draftId);
+      queued.delete(finishedScope.draftId);
+    } catch (error) {
+      if (current === finishedScope) announce(`점검은 완료 저장됐지만 임시 저장 정리에 실패했습니다: ${error.message || '정리 오류'}`, true);
+      lastSaved.delete(finishedScope.draftId);
+      queued.delete(finishedScope.draftId);
+    } finally {
+      if (current === finishedScope) current = null;
     }
   });
 

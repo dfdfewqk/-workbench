@@ -5,7 +5,7 @@
   const $=id=>document.getElementById(id);
   if (!model || !$('sm-data-overview') || !$('sm-cleanup-panel')) return;
   const REQUIRED=model.STORES;
-  let db=null, snapshot=null, selected=new Set(), pending=null, busy=false;
+  let db=null, snapshot=null, selected=new Set(), pending=null, busy=false, detailRefreshPending=false;
   const say=(id,value)=>{const el=$(id);if(el)el.textContent=value;};
   const req=r=>new Promise((resolve,reject)=>{r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error||Error('저장 영역 요청 실패'));});
   function done(t){return new Promise((resolve,reject)=>{t.oncomplete=()=>resolve();t.onabort=()=>reject(t.error||Error('거래가 취소되었습니다.'));});}
@@ -32,15 +32,21 @@
     const records=await Promise.all(all.map(async name=>[name,await req(t.objectStore(name).getAll())]));
     await completed;return Object.fromEntries(records);
   }
+  async function readCounts(connection){
+    const all=names(connection),t=connection.transaction(all,'readonly'),completed=done(t);
+    const counts=await Promise.all(all.map(name=>req(t.objectStore(name).count())));
+    await completed;
+    return Object.fromEntries(all.map((name,index)=>[name,counts[index]]));
+  }
   function backupText(){
     let raw=null;try{raw=localStorage.getItem('smart-maintenance:last-backup');}catch(_){return '백업 날짜: 확인 불가';}
     const when=raw?new Date(raw):null;
     return when&&!Number.isNaN(when.getTime())?'마지막 백업 확인: '+when.toLocaleString('ko-KR'):'백업 확인 기록 없음';
   }
-  function overview(data){const count=name=>(data[name]||[]).length;
-    say('sm-data-overview',`현재 브라우저 기록 · 설비 ${count('equipment')}대 / 점검 ${count('inspectionRecords')}건 / 고장 ${count('faults')}건 / 정비 ${count('maintenanceRecords')}건 / 사진 ${count('photos')}건`);
-    say('sm-backup-when',backupText());
-    say('sm-data-origin','저장 주소: '+location.origin+' · 다른 주소/프로필/PC와 자동 동기화되지 않습니다.');
+  function overview(counts){const count=name=>counts[name]||0;
+    say('sm-data-overview',`이 브라우저에 저장된 기록 · 설비 ${count('equipment')}대 / 점검 ${count('inspectionRecords')}건 / 고장 ${count('faults')}건 / 정비 ${count('maintenanceRecords')}건 / 사진 ${count('photos')}건`);
+    say('sm-backup-when',backupText()+' · 자동 백업이 아닙니다. 별도 백업 파일을 보관하세요.');
+    say('sm-data-origin','로컬 저장 출처: '+location.origin+' · 다른 주소·브라우저 프로필·PC·휴대폰과 데이터가 자동 공유되지 않습니다.');
   }
   function safeText(tag,txt,cls){const el=document.createElement(tag);el.textContent=txt;if(cls)el.className=cls;return el;}
   function showList(data){
@@ -58,9 +64,18 @@
         say('sm-cleanup-preview',[`선택 설비 ${p.equipmentCount}대 · 삭제 예정 총 ${p.total}건`,...Object.entries(p.counts).map(([key,value])=>`• ${model.LABELS[key]||key} ${value}건`),'선택하지 않은 설비와 기본 설정은 유지됩니다.'].join('\n'));}
     }catch(e){say('sm-cleanup-preview','삭제 대상 확인 실패: '+e.message);}allowDelete();
   }
-  async function refresh(){if(busy)return;busy=true;allowDelete();say('sm-data-overview','브라우저 저장소에서 기록 확인 중…');
-    try{const connection=await connect();snapshot=await readAll(connection);selected=new Set([...selected].filter(id=>snapshot.equipment.some(x=>x.id===id)));overview(snapshot);showList(snapshot);preview();say('sm-cleanup-message','현재 기록을 읽었습니다. 아직 어떤 데이터도 삭제하지 않았습니다.');}
-    catch(e){snapshot=null;pending=null;say('sm-data-overview','기록 조회 실패: '+e.message);say('sm-cleanup-message','오류: '+e.message);}finally{busy=false;allowDelete();}}
+  async function refresh(options={}){if(busy){if(options.loadDetails||$('sm-cleanup-panel').open)detailRefreshPending=true;return;}busy=true;allowDelete();say('sm-data-overview','브라우저 저장소에서 기록 건수 조회 중…');
+    try{
+      const connection=await connect();const counts=await readCounts(connection);overview(counts);
+      if(options.loadDetails||$('sm-cleanup-panel').open){
+        snapshot=await readAll(connection);
+        selected=new Set([...selected].filter(id=>snapshot.equipment.some(x=>x.id===id)));
+        showList(snapshot);preview();
+        say('sm-cleanup-message','삭제 대상과 연결된 기록을 확인했습니다. 아직 삭제된 데이터는 없습니다.');
+      }else{snapshot=null;pending=null;}
+    }catch(e){snapshot=null;pending=null;say('sm-data-overview','기록 조회 실패: '+e.message);say('sm-cleanup-message','오류: '+e.message);}
+    finally{busy=false;allowDelete();if(detailRefreshPending){detailRefreshPending=false;if($('sm-cleanup-panel').open)void refresh({loadDetails:true});}}
+  }
   async function removeSelected(){if(busy||!pending||$('sm-cleanup-delete').disabled)return;
     const {ids,signature,plan}=pending;
     if(!confirm(`선택한 테스트 설비 ${ids.length}대 및 연결 기록 총 ${plan.total}건을 영구 삭제합니다.\n백업 파일을 실제로 보관했고 삭제 대상을 확인했습니까?`))return;
@@ -82,17 +97,17 @@
         };r.onerror=()=>{failed=r.error||Error('삭제 전 조회 실패');t.abort();};}
       });
       selected.clear();pending=null;$('sm-cleanup-phrase').value='';$('sm-cleanup-ack').checked=false;$('sm-cleanup-backup').checked=false;
-      snapshot=await readAll(connection);showList(snapshot);overview(snapshot);preview();
+      snapshot=await readAll(connection);showList(snapshot);overview(await readCounts(connection));preview();
       say('sm-cleanup-message',`삭제 완료: 테스트 설비 ${ids.length}대와 연결 기록 총 ${deleted}건을 삭제했습니다. 화면에 남아 있는 이전 설비 목록은 앱을 새로고침하면 갱신됩니다.`);
       window.dispatchEvent(new Event('smart-maintenance:data-changed'));
     }catch(e){say('sm-cleanup-message','삭제 미완료: '+e.message+' 삭제 완료로 표시하지 않습니다.');}
     finally{busy=false;allowDelete();}
   }
   $('sm-data-refresh').addEventListener('click',refresh);
-  $('sm-cleanup-refresh').addEventListener('click',refresh);
+  $('sm-cleanup-refresh').addEventListener('click',()=>refresh({loadDetails:true}));
   $('sm-cleanup-delete').addEventListener('click',removeSelected);
   for(const id of ['sm-cleanup-backup','sm-cleanup-ack','sm-cleanup-phrase'])$(id).addEventListener(id==='sm-cleanup-phrase'?'input':'change',allowDelete);
-  $('sm-cleanup-panel').addEventListener('toggle',()=>{if($('sm-cleanup-panel').open)refresh();});
+  $('sm-cleanup-panel').addEventListener('toggle',()=>{if($('sm-cleanup-panel').open)refresh({loadDetails:true});else{snapshot=null;pending=null;allowDelete();}});
   window.addEventListener('smart-maintenance:data-changed',()=>{if(!busy)refresh();});
   window.addEventListener('smart-maintenance:data-ready',()=>{if(!busy)refresh();});
   window.addEventListener('smart-maintenance:backup-confirmed',()=>say('sm-backup-when',backupText()));

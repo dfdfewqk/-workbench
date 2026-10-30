@@ -3,3 +3,7 @@
 @media(max-width:380px){.plan-execution-choice{min-width:67px;padding:5px 7px;font-size:9px}.plan-execution-panel{padding:10px}}
 
 .plan-execution-start-warning{margin:12px 0;padding:12px 14px;border:1px solid #e7b7ad;background:#fff4f1;border-radius:8px;color:#943e31;font-size:12px;line-height:1.6}
+
+/* Frozen final inspection: distinguish saving from a completed record. */
+#plan-execution-form[aria-busy="true"]{cursor:progress}
+#plan-execution-form[aria-busy="true"] input,#plan-execution-form[aria-busy="true"] textarea,#plan-execution-form[aria-busy="true"] select,#plan-execution-form[aria-busy="true"] button{pointer-events:none}
