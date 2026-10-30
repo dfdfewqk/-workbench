@@ -1,0 +1,8 @@
+/* Common read-only lookup controls; keep business rules in their existing modules. */
+.record-search-bar,.unified-history-filters{display:flex;flex-wrap:wrap;align-items:end;gap:10px;margin:12px 0 14px}
+.record-search-bar label,.unified-history-filters label{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;min-width:135px;flex:1 1 150px}
+.record-search-bar label:has(input[type="search"]){flex:2 1 220px}
+.record-search-bar input,.record-search-bar select,.unified-history-filters input[type="search"]{box-sizing:border-box;width:100%;min-height:44px;padding:9px 12px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;color:#192a35;font:inherit;font-size:15px}
+.record-search-bar input:focus-visible,.record-search-bar select:focus-visible,.unified-history-filters input[type="search"]:focus-visible{outline:3px solid #94c5ef;outline-offset:2px}
+.record-search-bar button{min-height:44px}
+@media(max-width:600px){.record-search-bar label{flex-basis:100%}.record-search-bar button{width:100%;min-height:48px}}

@@ -97,6 +97,31 @@ let editingAsset = null;
 let currentChecklistAsset = null;
 let currentChecklist = null;
 let editingChecklistItemId = null;
+let equipmentCache = {active: [], archived: []};
+const equipmentSearch = document.getElementById('equipment-search');
+const equipmentTypeFilter = document.getElementById('equipment-type-filter');
+const recordMatches = globalThis.SmartMaintenanceRecordSearch.matches;
+if (equipmentTypeFilter) {
+  for (const type of EQUIPMENT_TYPES) equipmentTypeFilter.add(new Option(type.name, type.id));
+}
+function renderFilteredEquipment() {
+  const query = equipmentSearch?.value || '';
+  const type = equipmentTypeFilter?.value || '';
+  const filtered = rows => rows.filter(asset => (!type || asset.typeId === type) &&
+    recordMatches([asset.name, asset.assetCode, asset.location, EQUIPMENT_TYPES.find(t => t.id === asset.typeId)?.name], query));
+  const active = filtered(equipmentCache.active);
+  const archived = filtered(equipmentCache.archived);
+  equipmentCount.textContent = `${active.length}대 표시 / 전체 ${equipmentCache.active.length}대`;
+  activeEquipmentCount.textContent = `${active.length}/${equipmentCache.active.length}대`;
+  archivedEquipmentCount.textContent = `${archived.length}/${equipmentCache.archived.length}대`;
+  const filtering = Boolean(query.trim() || type);
+  renderEquipmentRows(equipmentList, active, 'active', filtering);
+  renderEquipmentRows(archivedEquipmentList, archived, 'archived', filtering);
+}
+for (const input of [equipmentSearch, equipmentTypeFilter]) input?.addEventListener(input.type === 'search' ? 'input' : 'change', renderFilteredEquipment);
+document.getElementById('equipment-search-reset')?.addEventListener('click', () => {
+  equipmentSearch.value = ''; equipmentTypeFilter.value = ''; renderFilteredEquipment(); equipmentSearch.focus();
+});
 
 function showView(viewName) {
   const page = viewInfo[viewName];
@@ -291,11 +316,8 @@ function loadEquipment() {
 }
 
 function renderEquipment(activeRows, archivedRows) {
-  equipmentCount.textContent = `${activeRows.length}대`;
-  activeEquipmentCount.textContent = `${activeRows.length}대`;
-  archivedEquipmentCount.textContent = `${archivedRows.length}대`;
-  renderEquipmentRows(equipmentList, activeRows, 'active');
-  renderEquipmentRows(archivedEquipmentList, archivedRows, 'archived');
+  equipmentCache = {active: activeRows, archived: archivedRows};
+  renderFilteredEquipment();
 }
 
 function formatArchivedDate(value) {
@@ -305,14 +327,14 @@ function formatArchivedDate(value) {
   return new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
 }
 
-function renderEquipmentRows(listElement, rows, listType) {
+function renderEquipmentRows(listElement, rows, listType, filtering = false) {
   listElement.replaceChildren();
   if (rows.length === 0) {
     const row = document.createElement('tr');
     const cell = document.createElement('td');
     cell.colSpan = 5;
     cell.className = 'empty-table-cell';
-    cell.textContent = listType === 'archived'
+    cell.textContent = filtering ? '검색 조건에 맞는 설비가 없습니다. 검색 초기화를 선택해 보세요.' : listType === 'archived'
       ? '보관된 설비가 없습니다.'
       : '등록된 설비가 없습니다. 왼쪽 양식에서 설비를 등록하세요.';
     row.append(cell);
@@ -750,6 +772,7 @@ equipmentForm.addEventListener('submit', async (event) => {
     setEquipmentMessage('유효한 설비 종류를 선택하세요.', true); return;
   }
   equipmentSubmit.disabled = true;
+  globalThis.SmartMaintenanceDataTools?.markSaving?.();
   try {
     if (editingAsset) {
       await updateEquipment(editingAsset.id, { name, typeId, location });
@@ -763,7 +786,9 @@ equipmentForm.addEventListener('submit', async (event) => {
       await loadEquipment();
       setEquipmentMessage('설비를 등록하고 이 브라우저에 저장했습니다.');
     }
+    globalThis.SmartMaintenanceDataTools?.markSaved?.();
   } catch (error) {
+    globalThis.SmartMaintenanceDataTools?.markError?.();
     setEquipmentMessage(error instanceof Error ? error.message : '설비를 저장하지 못했습니다. 다시 시도해 주세요.', true);
   } finally {
     equipmentSubmit.disabled = false;
@@ -850,6 +875,7 @@ openDatabase()
     await ensureChecklistTemplates();
     equipmentSubmit.disabled = false;
     await loadEquipment();
+    window.dispatchEvent(new Event('smart-maintenance:data-ready'));
   })
   .catch((error) => {
     const text = error instanceof Error ? error.message : 'IndexedDB를 초기화하지 못했습니다.';

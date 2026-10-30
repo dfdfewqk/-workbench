@@ -34,7 +34,10 @@
   function makeTag(parent,label,alert=false) {add(parent,'span',label,alert?'fault-alert':'');}
   function renderList() {
     const body=$('fault-rows');body.replaceChildren();
-    const filtered=faults.filter(f=>$('fault-filter').value==='all'||f.status===$('fault-filter').value)
+    const query=$('fault-query').value,priority=$('fault-priority-filter').value;
+    const filtered=faults.filter(f=>($('fault-filter').value==='all'||f.status===$('fault-filter').value) &&
+      (!priority||f.priority===priority) && globalThis.SmartMaintenanceRecordSearch.matches(
+        [faultName(f),f.assetCode,f.summary,f.owner,...(f.symptomItems||[]).map(i=>i.name)],query))
       .sort((a,b)=>Number(a.status==='closed')-Number(b.status==='closed')||String(b.createdAt).localeCompare(String(a.createdAt)));
     $('faults-count').textContent=`${filtered.length}건 / 전체 ${faults.length}건`;
     for (const f of filtered) {
@@ -61,7 +64,7 @@
       const c6=document.createElement('td');const button=text('button','상세 보기','secondary-button');button.type='button';button.dataset.faultId=f.id;c6.append(button);
       row.append(c1,c2,c3,c4,c5,c6);body.append(row);
     }
-    if(!filtered.length){const tr=document.createElement('tr');const reason=faults.length===0?'고장 기록이 없습니다. 점검 결과에서 「고장」으로 판정하거나 「주의」에서 고장 등록을 선택한 뒤 점검을 저장하면 여기에 표시됩니다.':'선택한 상태에 해당하는 고장이 없습니다. 「전체」로 변경하면 다른 상태의 고장을 확인할 수 있습니다.';const td=text('td',reason);td.colSpan=6;tr.append(td);body.append(tr);}
+    if(!filtered.length){const tr=document.createElement('tr');const reason=faults.length===0?'고장 기록이 없습니다. 점검에서 고장으로 판정하고 기록을 저장하면 여기에 표시됩니다.':'검색 조건에 맞는 고장이 없습니다. 검색 초기화 또는 전체 상태를 선택해 보세요.';const td=text('td',reason);td.colSpan=6;tr.append(td);body.append(tr);}
   }
   function renderDetail() {
     const f=faults.find(item=>item.id===selectedId);
@@ -178,6 +181,11 @@
   globalThis.SmartMaintenanceFaultUI=Object.freeze({updateSelected});
   $('fault-refresh').addEventListener('click',()=>void refreshFromButton());
   $('fault-filter').addEventListener('change',renderList);
+  $('fault-query').addEventListener('input', renderList);
+  $('fault-priority-filter').addEventListener('change', renderList);
+  $('fault-filter-reset').addEventListener('click', () => {
+    $('fault-query').value='';$('fault-filter').value='open';$('fault-priority-filter').value='';renderList();$('fault-query').focus();
+  });
   $('fault-rows').addEventListener('click',e=>{
     const button=e.target.closest('[data-fault-id]');if(!button)return;
     selectedId=button.dataset.faultId;renderDetail();$('fault-detail').scrollIntoView({block:'start',behavior:'smooth'});

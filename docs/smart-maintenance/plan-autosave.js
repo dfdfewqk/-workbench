@@ -227,6 +227,7 @@
         announce('기존 임시 저장은 다른 점검표 버전의 내용으로 보존했습니다. 현재 입력으로 덮어쓰지 않습니다.', true);
       } else if (loaded.draft) {
         restoreDraft(loaded.draft, scope);
+        window.dispatchEvent(new CustomEvent('smart-maintenance:plan-draft-restored', { detail: { planId: scope.plan.id, equipmentId: scope.equipment.id } }));
         lastSaved.set(scope.draftId, fingerprint(loaded.draft));
         const savedAt = new Date(loaded.draft.updatedAt || Date.now()).toLocaleString('ko-KR');
         announce(`임시 저장 내용을 불러왔습니다 · ${savedAt}`);

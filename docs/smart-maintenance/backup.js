@@ -222,6 +222,7 @@
           localStorage.setItem('smart-maintenance:last-backup-photo-count',String(count));
         }finally{d.close();}
         localStorage.setItem('smart-maintenance:last-backup', new Date().toISOString());
+        window.dispatchEvent(new Event('smart-maintenance:backup-confirmed'));
         refreshReminder();
       }
       say(expStatus, `백업 파일 다운로드 요청 완료: ${out.filename} · 데이터 ${out.count}건. 다운로드 폴더에서 파일을 확인하세요.`);

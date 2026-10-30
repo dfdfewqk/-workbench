@@ -1,0 +1,30 @@
+/* Focused workbench affects only the scheduled plan inspection editor. */
+.plan-focus-toolbar{padding:14px;margin:14px 0 12px;border:1px solid #d9e5ec;border-radius:12px;background:#f7fbff}
+.plan-focus-toolbar[hidden],.plan-focus-navigation[hidden],.plan-focus-hint[hidden],.plan-execution-item[hidden]{display:none!important}
+.plan-focus-heading{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:15px;color:#183d50}
+.plan-focus-count{color:#466475;font-size:13px;font-weight:600}
+.plan-focus-progress{display:block;width:100%;height:11px;margin:12px 0;accent-color:#266cac}
+.plan-focus-controls{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:12px}
+.plan-focus-select-label{display:flex;flex-direction:column;gap:6px;color:#45606b;font-size:13px;font-weight:600;min-width:min(280px,100%);flex:1}
+.plan-focus-jump{height:46px;width:100%;max-width:600px;padding:7px 10px;border:1px solid #bbcbd5;border-radius:8px;background:#fff;color:#203b4c;font-size:14px}
+.plan-focus-toggle,.plan-focus-navigation button{min-height:46px;font-size:14px;padding:10px 14px}
+.plan-execution-panel .plan-execution-item{padding:18px;border-radius:12px;border-color:#d8e2e8;background:#fff}
+.plan-execution-panel .plan-execution-item.is-current{border-color:#8eb3d0;box-shadow:0 0 0 1px #b4d1e7}
+.plan-execution-panel .plan-execution-item legend{font-size:16px;font-weight:700;line-height:1.45;color:#203d4c}
+.plan-execution-panel .plan-execution-guidance{font-size:13px;line-height:1.6;color:#516a76}
+.plan-execution-panel .plan-execution-choice{min-height:48px;min-width:110px;padding:10px 16px;font-size:15px;justify-content:center;border-radius:9px}
+.plan-execution-panel .plan-execution-choice input{width:17px;height:17px}
+.plan-execution-panel .plan-execution-item textarea{display:block;width:100%;min-height:76px;margin-top:14px;padding:11px;border:1px solid #bdcbd2;border-radius:8px;font-size:14px;line-height:1.5;color:#203d4c;background:#fff}
+.plan-execution-panel .plan-execution-meta{font-size:13px;line-height:1.55}
+.plan-execution-panel .plan-execution-note{font-size:12px;line-height:1.6}
+.plan-execution-panel .plan-execution-field input,.plan-execution-panel .plan-execution-field textarea{min-height:44px;font-size:14px}
+.plan-execution-panel .plan-execution-heading h3{font-size:19px}
+.plan-execution-panel .plan-execution-heading>.secondary-button{min-height:44px;font-size:13px}
+.plan-execution-panel .plan-execution-items-heading{font-size:15px}
+.plan-execution-panel :is(button,select,input,textarea):focus-visible{outline:3px solid #206eb6;outline-offset:2px}
+.plan-focus-navigation{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}
+.plan-focus-current{margin:0;color:#435a66;font-size:13px;text-align:center;font-weight:600}
+.plan-focus-hint{font-size:13px;line-height:1.55;color:#31546b;padding:11px 13px;border-left:3px solid #4581b7;background:#f1f7fc;border-radius:6px;margin:10px 0}
+.plan-execution-panel .plan-draft-status{font-size:12px;line-height:1.5}
+@media(max-width:760px){.plan-focus-toolbar{padding:12px}.plan-execution-panel .plan-execution-choice{flex:1;min-width:86px}.plan-focus-navigation{display:grid;grid-template-columns:1fr 1fr;gap:9px}.plan-focus-navigation .plan-focus-current{grid-column:1/-1;grid-row:1}.plan-focus-navigation button{width:100%}.plan-focus-controls .plan-focus-toggle{width:100%}.plan-execution-panel .plan-execution-item{padding:14px}.plan-execution-panel .plan-execution-item legend{font-size:15px}}
+@media(max-width:380px){.plan-execution-panel .plan-execution-choice{min-width:0;padding:9px 8px;font-size:14px}}

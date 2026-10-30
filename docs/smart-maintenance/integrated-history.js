@@ -37,6 +37,12 @@
     panel.append(heading);
 
     const filters = make('div', 'unified-history-filters');
+    const searchLabel = make('label', 'unified-filter-field');
+    searchLabel.append(make('span', '', '기록 검색'));
+    const queryInput = make('input', '');
+    queryInput.id = 'unified-filter-query'; queryInput.type = 'search';
+    queryInput.placeholder = '설비 · 관리번호 · 점검자 · 메모'; queryInput.autocomplete = 'off';
+    searchLabel.append(queryInput); filters.append(searchLabel);
     filters.append(selectField('설비', 'unified-filter-equipment', [['', '전체 설비']]));
     filters.append(selectField('기록 유형', 'unified-filter-type', [
       ['', '전체 유형'], ['inspection', '점검'], ['maintenance', '독립 정비 기록'], ['repair', '고장별 정비 작업']
@@ -112,6 +118,7 @@
   }
 
   const elements = buildHistoryView();
+  const queryFilter = document.getElementById('unified-filter-query');
   const equipmentFilter = document.getElementById('unified-filter-equipment');
   const typeFilter = document.getElementById('unified-filter-type');
   const fromFilter = document.getElementById('unified-filter-from');
@@ -220,6 +227,11 @@
     const record = entry.record;
     const date = recordDate(entry);
     if (equipmentFilter.value && record.equipmentId !== equipmentFilter.value) return false;
+    const related = equipmentRows.find(a => a.id === record.equipmentId);
+    if (!globalThis.SmartMaintenanceRecordSearch.matches([related?.name,related?.assetCode,
+      record.equipmentName,record.assetCode,record.inspector,record.actor,record.owner,
+      record.memo,record.actions,record.workDescription,record.note,record.maintenanceType,
+      ...(Array.isArray(record.checklistItems) ? record.checklistItems.map(i => i.name) : [])],queryFilter.value)) return false;
     if (typeFilter.value && entry.kind !== typeFilter.value) return false;
     if (fromFilter.value && (!date || date < fromFilter.value)) return false;
     if (toFilter.value && (!date || date > toFilter.value)) return false;
@@ -304,7 +316,7 @@
     }
 
     const filtered = records.filter(matchesFilters);
-    count.textContent = `${filtered.length}건`;
+    count.textContent = `${filtered.length}건 / 전체 ${records.length}건`;
     if (!filtered.length) {
       const row = document.createElement('tr');
       const cell = make('td', 'empty-table-cell', '조건에 맞는 점검·정비 이력이 없습니다.');
@@ -368,10 +380,11 @@
     render();
   }
 
-  for (const control of [equipmentFilter, typeFilter, fromFilter, toFilter]) {
-    control.addEventListener('change', () => { expandedKey = null; render(); });
+  for (const control of [queryFilter, equipmentFilter, typeFilter, fromFilter, toFilter]) {
+    control.addEventListener(control === queryFilter ? 'input' : 'change', () => { expandedKey = null; render(); });
   }
   document.getElementById('unified-filter-reset').addEventListener('click', () => {
+    queryFilter.value = '';
     equipmentFilter.value = '';
     typeFilter.value = '';
     fromFilter.value = '';
@@ -394,22 +407,19 @@
       setEquipmentFilter(archivedButton.dataset.historyEquipment);
       return;
     }
-    const historyButton = event.target.closest('[data-view="history"]');
-    if (historyButton) {
-      equipmentFilter.value = '';
-      typeFilter.value = '';
-      fromFilter.value = '';
-      toFilter.value = '';
-      expandedKey = null;
-      render();
-    }
+    // Returning from another view preserves the user's search and date filters.
   });
 
   async function refresh() {
     try {
       await loadData();
     } catch (error) {
-      elements.count.textContent = '불러오기 실패';
+      // Query errors are not an empty result and should never leave old rows looking current.
+      elements.body.replaceChildren();
+      const row = make('tr', '');
+      const cell = make('td', 'empty-table-cell is-error', '저장소 조회 실패 · 새로고침 후 다시 확인하세요.');
+      cell.colSpan = 6; row.append(cell); elements.body.append(row);
+      elements.count.textContent = '조회 실패';
       elements.message.textContent = error instanceof Error ? `통합 이력을 불러오지 못했습니다: ${error.message}` : '통합 이력을 불러오지 못했습니다.';
     }
   }

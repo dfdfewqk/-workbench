@@ -218,7 +218,12 @@
     if(!target || target.hidden || target.closest('[hidden]'))return false;
     for(const [key,details] of wrappers)if(key!=='fault-history-log' && details!==target)details.open=false;
     target.open=true;
-    target.scrollIntoView({behavior:'smooth',block:'start'});
+    // Move keyboard focus into the revealed panel. The original action remains
+    // non-submitting, and the existing form and validation handlers are preserved.
+    const heading = target.querySelector('summary');
+    if (heading) heading.focus({preventScroll:true});
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({behavior:reducedMotion?'instant':'smooth',block:'start'});
     return true;
   }
   window.addEventListener('smart-maintenance:fault-open-form',event=>{

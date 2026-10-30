@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const source=readFileSync(new URL('../docs/smart-maintenance/plan-execution.js',import.meta.url),'utf8');
+assert.match(source,/if\(saving\|\|completed\|\|!context\)return;/);
+assert.match(source,/saving=true;submit\.disabled=true;/);
+assert.match(source,/async function start\([^)]*afterCompletedSave=false\)/);
+assert.match(source,/afterCompletedSave \? \(!completed \|\| !saving\) : \(!consumeStartApproval\(planId\)&&!mayLeaveInspection\(\)\)/);
+assert.match(source,/await commit\(record,sig\(current\.items\)\);[\s\S]*?completed=true;/);
+assert.match(source,/await start\(next\.dataset\.scheduleStart,next,next\.dataset\.scheduleDueDate,next\.dataset\.scheduleMissed,next\.dataset\.scheduleOccurrenceId,true\)/);
+console.log('PASS: auto-advance after committed save preserves navigation guard');

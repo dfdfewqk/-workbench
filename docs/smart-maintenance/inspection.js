@@ -518,8 +518,7 @@
   });
   for (const button of document.querySelectorAll('[data-view="history"]')) {
     button.addEventListener('click', () => {
-      historyEquipmentId = null;
-      expandedRecordId = null;
+      // Keep equipment scoping when revisiting; explicit '전체 이력' clears it.
       renderHistory();
     });
   }

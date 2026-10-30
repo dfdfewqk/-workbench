@@ -1,0 +1,98 @@
+/* Smart Maintenance: on-site small-screen ergonomics. Presentation only;
+   does not modify stored records, inspection completion, fault approvals or navigation. */
+:where(.view-panel,.panel,.plan-execution-panel,.fault-editor){min-width:0}
+:where(.schedule-table,.fault-table) :where(td,th){overflow-wrap:anywhere}
+@media (max-width:760px){
+  /* Keep all four major destinations visible without horizontal navigation. */
+  .mobile-nav{position:relative;z-index:4;grid-template-columns:repeat(4,minmax(0,1fr))}
+  .mobile-nav .group-link{font-size:13px;min-height:48px;line-height:1.25;white-space:normal;overflow-wrap:normal}
+  .workspace-subnav{scroll-padding-inline:12px}
+  .workspace-subnav .nav-sub-link{font-size:14px;min-height:46px;white-space:nowrap}
+  .content{overflow-wrap:anywhere;min-width:0}
+  .panel-heading{gap:10px}
+  .page-heading .page-subtitle{line-height:1.55}
+  /* The six-column fault list and five-column schedule used to require sideways
+     scrolling on a phone. Show each row as a self-contained work card instead. */
+  .fault-table-wrap,.schedule-panel .table-wrap{overflow-x:visible;min-width:0}
+  .fault-table,.schedule-table{width:100%;min-width:0!important;table-layout:auto;border-collapse:separate}
+  .fault-table thead,.schedule-table thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .fault-table tbody,.schedule-table tbody{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+  .fault-table tbody tr,.schedule-table tbody tr{display:block;padding:13px 14px;border:1px solid #d8e3ee;border-radius:12px;background:#fff;box-shadow:0 1px 5px rgba(15,23,42,.05);min-width:0}
+  .fault-table tbody td,.schedule-table tbody td{display:block;width:auto!important;min-width:0!important;max-width:none;border-bottom:1px solid #e7edf3;padding:10px 0;font-size:14px;line-height:1.55;white-space:normal;overflow-wrap:anywhere}
+  .fault-table tbody td:last-child,.schedule-table tbody td:last-child{border-bottom:0;padding-bottom:0}
+  .fault-table tbody td:first-child,.schedule-table tbody td:first-child{padding-top:0;font-size:15px}
+  .fault-table tbody td::before,.schedule-table tbody td::before{display:block;font-size:12px;font-weight:700;color:#576b7e;line-height:1.5;margin:0 0 3px}
+  .fault-table td:nth-child(1)::before,.schedule-table td:nth-child(1)::before{content:'설비'}
+  .fault-table td:nth-child(2)::before{content:'관리 책임자'}
+  .fault-table td:nth-child(3)::before{content:'우선순위 · 운전 상태'}
+  .fault-table td:nth-child(4)::before{content:'조치 기한 · 재확인'}
+  .fault-table td:nth-child(5)::before{content:'고장 상태'}
+  .fault-table td:nth-child(6)::before{content:'작업 열기'}
+  .schedule-table td:nth-child(2)::before{content:'점검 계획 · 회차'}
+  .schedule-table td:nth-child(3)::before{content:'점검 주기'}
+  .schedule-table td:nth-child(4)::before{content:'예정일 · 상태'}
+  .schedule-table td:nth-child(5)::before{content:'완료 기록'}
+  .fault-table td[colspan],.schedule-table td[colspan]{padding:12px 3px;line-height:1.65}
+  .fault-table td[colspan]::before,.schedule-table td[colspan]::before{content:none!important}
+  .fault-table td button,.schedule-table .schedule-start-button{display:block;width:100%;min-width:0;min-height:48px;margin-top:9px;padding:11px 14px;font-size:14px;white-space:normal}
+  .fault-toolbar{align-items:stretch;gap:8px}
+  .fault-toolbar label{width:100%;font-size:14px}
+  .fault-toolbar select{flex:1;min-width:0;height:46px;font-size:14px}
+  .fault-toolbar button{min-height:46px}
+  .schedule-toolbar label,.schedule-toolbar select,.schedule-description,.schedule-message{font-size:13px;line-height:1.6}
+  .schedule-toolbar select{min-height:46px}
+  .schedule-status{font-size:12px;line-height:1.5;padding:5px 9px;margin:7px 5px 0 0}
+  .fault-quick-overview,.fault-quick-actions{margin:13px 0;padding:14px;min-width:0}
+  .fault-quick-overview h3,.fault-quick-actions h3{font-size:16px}
+  .fault-quick-cell dt{font-size:12px;line-height:1.4}
+  .fault-quick-cell dd{font-size:14px;line-height:1.5}
+  .fault-quick-grid{gap:12px}
+  .fault-quick-buttons{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .fault-quick-button{min-width:0;min-height:48px;padding:12px;font-size:14px;line-height:1.35;overflow-wrap:anywhere}
+  .fault-quick-button.fault-quick-recommended{grid-column:1/-1}
+  .fault-disclosure>summary{min-height:48px;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+  .fault-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+  .fault-editor :is(input:not([type=checkbox]):not([type=radio]),select,textarea),
+  .repair-panel :is(input:not([type=checkbox]):not([type=radio]),select,textarea){min-height:46px;font-size:16px;line-height:1.5}
+  .fault-button-row{align-items:stretch}
+  .fault-button-row>button,.fault-disclosure button[type=submit]{min-height:48px;width:100%;white-space:normal}
+  .repair-card .repair-card-action{min-height:46px;font-size:14px}
+  .repair-card .repair-card-action:focus-visible{outline:3px solid var(--sm-focus,#bfdbfe);outline-offset:2px}
+  .plan-execution-panel .plan-execution-fields,.plan-execution-panel .plan-execution-notes{grid-template-columns:minmax(0,1fr)}
+  .plan-execution-panel .plan-execution-choice{min-height:50px;font-size:15px}
+  .plan-execution-panel .plan-execution-footer{position:sticky;bottom:0;bottom:env(safe-area-inset-bottom,0px);z-index:3;padding:12px 10px;background:#fff;border:1px solid #dde6ef;border-radius:10px;box-shadow:0 -4px 14px rgba(15,23,42,.08);margin-top:16px}
+  /* Do not pin controls over the mobile keyboard while entering a note. */
+  .plan-execution-panel:has(input:focus,textarea:focus,select:focus) .plan-execution-footer{position:static;box-shadow:none}
+  .plan-execution-panel .plan-execution-footer .primary-button{min-height:50px;font-size:15px}
+  .plan-execution-panel .plan-draft-status,.plan-execution-panel .plan-execution-footer .form-message{font-size:13px;line-height:1.5}
+  .plan-focus-toolbar{scroll-margin-top:12px}
+}
+@media(max-width:360px){
+  .fault-quick-buttons{grid-template-columns:minmax(0,1fr)}
+  .fault-quick-button.fault-quick-recommended{grid-column:auto}
+  .fault-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mobile-nav .group-link{font-size:12px}
+}
+@media (max-width:760px){
+  /* Equipment list: task controls stay usable without a 700px table viewport. */
+  .equipment-list-panel .table-wrap{overflow-x:visible;min-width:0}
+  .equipment-list-panel table{width:100%;min-width:0!important;border-collapse:separate}
+  .equipment-list-panel thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .equipment-list-panel tbody{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+  .equipment-list-panel tbody tr{display:block;min-width:0;border:1px solid #d8e3ee;border-radius:12px;background:#fff;padding:13px 14px}
+  .equipment-list-panel tbody td{display:block;min-width:0;border-bottom:1px solid #e9edf3;padding:8px 0;font-size:14px;white-space:normal;overflow-wrap:anywhere}
+  .equipment-list-panel tbody td:first-child{font-size:15px;font-weight:700;padding-top:0}
+  .equipment-list-panel tbody td:last-child{border-bottom:0;padding-bottom:0}
+  .equipment-list-panel tbody td::before{display:block;font-size:12px;font-weight:700;color:#576b7e;margin-bottom:3px}
+  .equipment-list-panel tbody td:nth-child(1)::before{content:'설비 이름'}
+  .equipment-list-panel tbody td:nth-child(2)::before{content:'관리번호'}
+  .equipment-list-panel tbody td:nth-child(3)::before{content:'설비 종류'}
+  .equipment-list-panel tbody td:nth-child(4)::before{content:'위치 / 보관일'}
+  .equipment-list-panel tbody td:nth-child(5)::before{content:'설비 작업'}
+  .equipment-list-panel tbody td[colspan]::before{content:none!important}
+  .equipment-list-panel tbody td:last-child button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;margin:5px 6px 5px 0;padding:10px 13px;font-size:14px;white-space:normal}
+  .equipment-list-panel .equipment-list-tab{min-height:46px;font-size:13px}
+  #equipment-form :is(input,select){min-height:46px;font-size:16px}
+  #equipment-form :is(.primary-button,.secondary-button){min-height:48px;font-size:15px}
+  .equipment-form-panel .field-label{font-size:14px}
+}

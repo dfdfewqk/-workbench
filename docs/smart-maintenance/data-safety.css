@@ -1,0 +1,21 @@
+.sm-data-panel{margin:0 0 18px;padding:16px 18px;border:1px solid #d3e3f4;border-radius:12px;background:#f7fbff;color:#234060}
+.sm-data-panel h2{font-size:16px;margin:0 0 9px}
+.sm-data-panel p{font-size:13px;line-height:1.65;margin:6px 0}
+.sm-data-panel button{min-height:44px;padding:9px 14px}
+.sm-cleanup-panel{margin:16px 0;border:1px solid #e4d5c9;border-radius:12px;padding:15px 18px;background:#fffdfa}
+.sm-cleanup-panel summary{font-weight:700;cursor:pointer;font-size:15px;padding:8px;min-height:44px}
+.sm-cleanup-panel p{font-size:13px;line-height:1.65}
+.sm-cleanup-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border:1px solid #dfE4eb;border-radius:9px;margin:8px 0;background:white;cursor:pointer}
+.sm-cleanup-item input{width:22px;height:22px;flex-shrink:0;accent-color:#b91c1c}
+.sm-cleanup-item strong,.sm-cleanup-item small{display:block;overflow-wrap:anywhere}
+.sm-cleanup-item small{color:#52647c;font-size:12px;margin-top:3px}
+.sm-cleanup-panel label.sm-confirm{display:block;margin:14px 0;font-size:13px}
+.sm-cleanup-panel label.sm-confirm input{width:18px;height:18px;margin-right:7px;vertical-align:middle}
+.sm-cleanup-panel button{min-height:44px;padding:10px 14px;margin:7px 0;border-radius:8px}
+.sm-cleanup-panel button.sm-danger{background:#b91c1c;color:#fff;border:none}
+.sm-cleanup-panel button:disabled{opacity:.4;cursor:not-allowed}
+.sm-cleanup-panel #sm-cleanup-phrase{display:block;width:100%;max-width:400px;min-height:44px;margin:10px 0;padding:10px;border:1px solid #b5bdc9;border-radius:7px}
+.sm-cleanup-panel #sm-cleanup-preview{white-space:pre-wrap;padding:12px;border:1px solid #e3d7c6;border-radius:8px;background:#fff6e9}
+.sm-cleanup-panel #sm-cleanup-message{white-space:pre-wrap;padding:10px;color:#614a32}
+.view-panel.is-plan-management .sm-cleanup-panel{display:none}
+@media(max-width:760px){.sm-data-panel,.sm-cleanup-panel{padding:12px}.sm-cleanup-panel button.sm-danger{width:100%;}}
