@@ -1,0 +1,45 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import crypto from 'node:crypto';
+import assert from 'node:assert/strict';
+const site=path.resolve(import.meta.dirname,'../docs/smart-maintenance');
+const file = n => fs.readFileSync(path.join(site,n),'utf8');
+const html=file('index.html');
+assert.equal((html.match(/data-view="photos"/g)||[]).length,2,'desktop/mobile photo nav');
+assert.match(html,/data-panel="photos"/);
+assert.match(html,/id="photo-record-id"/);
+assert.match(html,/photos\.js" defer/);
+assert.match(file('storage-version-bridge.js'),/createObjectStore\('photos'/);
+assert.match(file('storage-version-bridge.js'),/Math\.max\(Number\.isInteger\(version\) \? version : 1, 6\)/);
+assert.match(file('photos.js'),/optimizedData/);
+assert.match(file('photos.js'),/originalBytes/);
+assert.match(file('photos.js'),/recordType:type,recordId,equipmentId:/);
+assert.match(file('backup.js'),/transaction\(names, 'readwrite'\)/);
+assert.match(file('backup.js'),/t\.abort\(\)/);
+assert.match(file('backup.js'),/photo\.recordId/);
+const entries = new Map();
+const stub = id => {
+ if(!entries.has(id))entries.set(id,{id,value:'',checked:true,disabled:false,hidden:false,files:[],textContent:'',classList:{toggle(){}},addEventListener(){},replaceChildren(){},append(){},querySelectorAll(){return[];}});
+ return entries.get(id);
+};
+stub('backup-export');stub('backup-preview');stub('backup-frequency').value='7';
+const context={console,TextEncoder,TextDecoder,CompressionStream,DecompressionStream,Blob,Response,Uint8Array,ArrayBuffer,Date,Math,Number,String,Promise,Error,URL,
+ crypto:crypto.webcrypto,btoa,atob,localStorage:{getItem:()=>null,setItem(){}},
+ document:{getElementById:stub,querySelectorAll:()=>[]},globalThis:null};
+context.globalThis=context;
+const modified=file('backup.js').replace(/\}\)\(\);\s*$/,`globalThis.__tests = {encrypt,decode};\n})();`);
+vm.runInNewContext(modified,context,{filename:'backup.js'});
+assert(context.__tests,'test hooks must be injected');
+const photo={id:'photo-one',recordType:'inspection',recordId:'insp-one',equipmentId:'eq-one',optimizedMime:'image/jpeg',optimizedBytes:3,optimizedData:btoa('abc'),createdAt:'2026-10-29T00:00:00.000Z'};
+const payload={kind:'smart-maintenance-backup',version:1,databaseVersion:6,stores:{equipment:[{id:'eq-one'}],inspectionRecords:[{id:'insp-one',equipmentId:'eq-one'}],photos:[photo]}};
+const enc=await context.__tests.encrypt(payload,'this-is-a-secret-pass');
+assert.equal(enc.algorithm,'AES-256-GCM');assert.equal(enc.compression,'gzip');
+const decoded=await context.__tests.decode(enc,'this-is-a-secret-pass');
+assert.equal(decoded.stores.photos[0].optimizedData,photo.optimizedData);
+await assert.rejects(context.__tests.decode(enc,'wrong-passphrase'),/비밀번호/);
+await assert.rejects(context.__tests.decode({...enc,ciphertext:enc.ciphertext.slice(0,-4)+'AAAA'},'this-is-a-secret-pass'),/손상/);
+const older=await context.__tests.decode({kind:'smart-maintenance-backup',version:1,databaseVersion:5,stores:{equipment:[{id:'eq-one'}]}},'');
+assert.equal(older.stores.photos.length,0,'legacy backups add empty photo store');
+await assert.rejects(context.__tests.decode({kind:'smart-maintenance-backup',version:1,databaseVersion:6,stores:{photos:[{...photo,optimizedMime:'image/svg+xml'}]}},''),/사진 저장소/);
+console.log('PASS: photo view/migration/record linkage, encrypted+compressed backup roundtrip, wrong-password/tamper rejection, legacy import validation');

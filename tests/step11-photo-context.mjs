@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const root = new URL('../docs/smart-maintenance/', import.meta.url);
+const read = name => readFileSync(new URL(name, root),'utf8');
+const html=read('index.html'),app=read('app.js'),photos=read('photos.js'),history=read('integrated-history.js');
+assert.match(html,/id="fault-add-photo"/);
+assert.match(history,/entry\.kind === 'inspection' \|\| entry\.kind === 'maintenance'/);
+assert.match(history,/smart-maintenance:open-photo/);
+assert.match(app,/showView\('photos'\)/);
+assert.match(app,/hidden === false/);
+assert.match(photos,/smart-maintenance:fault-selected/);
+assert.match(photos,/smart-maintenance:photo-context/);
+assert.match(photos,/recordType, recordId/);
+assert.match(photos,/!permitted\(row\)/);
+assert.match(photos,/token !== contextRequest/);
+assert.match(photos,/\$\('photo-record-id'\)\.value = recordId/);
+assert.match(photos,/photoButton\.addEventListener|faultPhotoButton\.addEventListener/);
+console.log('step11 photo contextual-link structure: OK');

@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const source = readFileSync(new URL('../docs/smart-maintenance/backup.js', import.meta.url),'utf8');
+assert.match(source, /const replaceRemoved = names\.reduce/);
+assert.match(source, /const replaceOverwritten = names\.reduce/);
+assert.match(source, /현재 기록 \$\{currentTotal\}건 · 백업 기록 \$\{backupTotal\}건/);
+assert.match(source, /\[전체 교체\].*삭제/);
+assert.match(source, /\[병합\].*추가/);
+assert.match(source, /if \(preview\) \{ clearPreview\(\);/);
+assert.match(source, /select\.disabled = mode === 'replace'/);
+assert.match(source, /SmartMaintenanceBackupIntegrity\.verify\(proposed, allProposedRecords\)/);
+assert.match(source, /JSON\.stringify\(actual\) !== JSON\.stringify\(current\)/);
+console.log('step8 backup preview checks pass');

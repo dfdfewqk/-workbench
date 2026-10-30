@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const src=fs.readFileSync(new URL('../docs/smart-maintenance/app.js',import.meta.url),'utf8');
+assert.match(src,/const connection = request\.result;/);
+assert.match(src,/connection\.onversionchange = \(\) => \{/);
+assert.match(src,/if \(database === connection\) \{/);
+assert.match(src,/database = null;/);
+assert.match(src,/equipmentSubmit\.disabled = true;/);
+assert.match(src,/입력 중인 내용을 확인하고 이 페이지를 새로고침/);
+console.log('PASS final: stale main IndexedDB connection is invalidated and user is warned without data deletion');

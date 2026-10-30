@@ -1,0 +1,35 @@
+/* Smart Maintenance UX 1·2: minimal work-focused design system. Data/UI models unchanged. */
+:root { --sm-primary:#1d4ed8;--sm-primary-soft:#eff5ff;--sm-success:#15803d;--sm-warning:#a16207;--sm-danger:#b91c1c;--sm-focus:rgba(37,99,235,.24);--sm-radius:9px;--sm-field-height:44px; }
+body { background:#f3f6fa;color:#10263d; }
+.sidebar { background:#172c43; }
+.sidebar .nav-caption { margin-top:28px; }
+.primary-nav { gap:6px; }
+.sidebar .group-link { font-size:14px;min-height:46px; }
+.sidebar .group-link.is-active { background:#254968;box-shadow:inset 3px 0 #82b4ff;color:#fff; }
+.sidebar-subnav { border-top:1px solid rgba(220,238,255,.12);margin-top:16px;padding:12px 0 0 14px;display:grid;gap:4px; }
+.sidebar-subnav .nav-sub-link { min-height:37px;height:auto;font-size:12px;color:#c4d5e3;padding:8px 10px; }
+.sidebar-subnav .nav-sub-link.is-active {background:#264769;color:#fff;box-shadow:inset 2px 0 #93c5fd;}
+.nav-secondary .nav-sub-link[hidden] { display:none!important; }
+.workspace-subnav { display:none; }
+.topbar { border-bottom-color:#e2e8f0; }
+.page-heading h1 { color:#0f172a;letter-spacing:-.5px; }
+.page-subtitle { color:#536679; }
+.page-heading .eyebrow { color:#1d4ed8; }
+.metric-card,.panel { border-color:#e0e7ef;border-radius:var(--sm-radius);box-shadow:0 3px 14px rgba(15,23,42,.025); }
+.primary-button { background:var(--sm-primary); }
+.primary-button:hover:not(:disabled) { background:#1e40af; }
+:where(button,input,select,textarea,a):focus-visible { outline:3px solid var(--sm-focus);outline-offset:2px; }
+.plan-mode-note { margin:0 0 14px;padding:13px 15px;border:1px solid #cfdcf2;border-radius:var(--sm-radius);background:var(--sm-primary-soft);color:#23416a;font-size:13px;line-height:1.65; }
+.plan-mode-note[hidden] { display:none!important; }
+.view-panel.is-plan-management .equipment-layout { grid-template-columns:minmax(0,1fr); }
+.view-panel.is-plan-management .equipment-form-panel { display:none!important; }
+.view-panel.is-plan-management .equipment-list-panel { width:100%; }
+@media(max-width:760px) {
+  .mobile-nav {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:0 10px;overflow:visible;}
+  .mobile-nav .group-link {width:100%;min-width:0;justify-content:center;height:48px;padding:0 3px;font-size:12px;white-space:nowrap;}
+  .mobile-nav .group-link.is-active {color:var(--sm-primary);box-shadow:inset 0 -3px var(--sm-primary);}
+  .workspace-subnav { display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;padding:0 0 12px;margin:0 0 16px;border-bottom:1px solid #e2e8f0; }
+  .workspace-subnav .nav-sub-link {display:inline-flex;flex:none;width:auto;min-height:44px;height:auto;padding:8px 13px;border:1px solid #dce5f2;border-radius:8px;background:white;color:#475569;font-size:13px;}
+  .workspace-subnav .nav-sub-link.is-active {background:var(--sm-primary-soft);border-color:#8fb3ed;color:#1e40af;box-shadow:none;}
+  .view-panel.is-plan-management .equipment-layout {display:block;}
+}

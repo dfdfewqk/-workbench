@@ -1,0 +1,13 @@
+# Local files and browser data exports
+*.smbak
+*.sqlite
+*.sqlite3
+*.db
+*.log
+node_modules/
+__pycache__/
+.pytest_cache/
+.DS_Store
+Thumbs.db
+.env
+.env.*

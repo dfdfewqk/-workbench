@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const base=new URL('../docs/smart-maintenance/',import.meta.url);
+const js=readFileSync(new URL('fault-quickview.js',base),'utf8');
+const css=readFileSync(new URL('faults.css',base),'utf8');
+const html=readFileSync(new URL('index.html',base),'utf8');
+assert.match(js,/recommendation\.textContent = `다음 권장 작업:/);
+assert.match(js,/flags\.needsOwner \|\| flags\.needsPriority \|\| flags\.needsOperation/);
+assert.match(js,/metrics\.planStatus === 'draft'/);
+assert.match(js,/metrics\?\.pending > 0/);
+assert.match(js,/button && !button\.hidden && !button\.disabled/);
+assert.match(js,/buttons\.prepend\(button\)/);
+assert.match(js,/openEditor\(button\.dataset\.faultOpen\)/);
+assert.match(css,/fault-quick-recommended/);
+assert.match(html,/fault-quickview\.js/);
+console.log('PASS: fault guidance uses available existing forms and preserves existing actions');

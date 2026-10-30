@@ -1,0 +1,42 @@
+.fault-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}.fault-table-wrap{overflow:auto}.fault-table{width:100%;border-collapse:collapse}.fault-table th,.fault-table td{padding:10px;border-bottom:1px solid var(--border,#dce4e7);text-align:left;vertical-align:top;white-space:normal}.fault-table th{font-size:.8rem;color:#5d7178}.fault-table button{white-space:nowrap}.fault-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:12px 0}.fault-toolbar label{font-weight:600}.fault-toolbar select,.fault-editor select,.fault-editor input,.fault-editor textarea{width:100%;max-width:100%;border:1px solid #b7c7cc;border-radius:8px;padding:9px;background:#fff;color:#142a32}.fault-editor label{display:flex;flex-direction:column;gap:5px;font-weight:600;font-size:.9rem}.fault-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:13px}.fault-grid .fault-span{grid-column:1/-1}.fault-editor fieldset{border:1px solid #d7e0e3;border-radius:10px;margin:15px 0;padding:15px}.fault-editor legend{font-weight:750;padding:0 7px}.fault-section{margin:16px 0}.fault-status-line{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.fault-status-line span{display:inline-block;border:1px solid #dbe4e7;border-radius:99px;padding:3px 9px;font-size:.83rem}.fault-status-line .fault-alert{background:#fff1e7;color:#873712;border-color:#efc9a6}.fault-log{list-style:none;padding:0;max-height:250px;overflow:auto}.fault-log li{padding:8px 10px;border-bottom:1px solid #dce4e7;white-space:pre-wrap;overflow-wrap:anywhere}.fault-info{white-space:pre-wrap;line-height:1.8}.fault-control{background:#f5f9fa;border:1px solid #dce7eb;border-radius:10px;padding:14px;margin:12px 0}.fault-button-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.fault-error{color:#a63022!important}.fault-muted{color:#64777f}.fault-hidden{display:none!important}.fault-review-warning{background:#fff1e7;border:1px solid #f3c39a;border-radius:8px;padding:11px;color:#833800}.fault-concern{margin:12px 0;padding:12px;border:1px solid #d9e2e6;border-radius:10px;background:#f8fbfc}.fault-concern label{display:block;margin:6px 0}.fault-concern select{max-width:100%;padding:8px;border-radius:8px}.fault-concern[hidden],[hidden]{display:none!important}
+
+/* Keep fault-refresh accessible next to the status filter on narrow screens. */
+.fault-toolbar select{width:auto;min-width:130px;max-width:100%}
+.fault-toolbar button:disabled{cursor:progress;opacity:.65}
+#fault-list-message{min-height:1.4em;font-size:.85rem;color:#2d6770;margin:.35rem 0 .75rem}
+#fault-list-message.fault-error{color:#a63022}
+
+/* Fault detail action-first layout; all original safety forms remain accessible. */
+.fault-quick-overview{margin:16px 0 12px;padding:16px;border:1px solid #cddfe1;border-radius:12px;background:#f7fbfb}
+.fault-quick-overview h3,.fault-quick-actions h3{margin:0 0 12px;font-size:1.02rem;color:#25434b}
+.fault-quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin:0}
+.fault-quick-cell{min-width:0}.fault-quick-cell dt{font-size:.82rem;color:#526b72;margin:0 0 4px}.fault-quick-cell dd{font-size:1rem;line-height:1.4;font-weight:700;color:#142f36;margin:0;overflow-wrap:anywhere}
+.fault-quick-note{font-size:.9rem;line-height:1.6;color:#536a71;margin:14px 0 0}
+.fault-quick-warning{background:#fff6e9;color:#7c420b;border:1px solid #f1d3a9;border-radius:7px;padding:9px 11px}
+.fault-quick-actions{margin:15px 0;padding:16px;border:1px solid #dce7e9;border-radius:12px;background:#fff}
+.fault-quick-buttons{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:9px}
+.fault-quick-button{border:1px solid #d3e1e1;background:#f4f9f9;color:#234b50;border-radius:9px;min-height:45px;padding:11px;text-align:left;font-size:.9rem;font-weight:700;cursor:pointer}
+.fault-quick-button:not(:disabled):hover,.fault-quick-button:not(:disabled):focus-visible{border-color:#399a8c;background:#e8f5f1;outline-offset:2px}
+.fault-quick-button:disabled{opacity:.48;cursor:not-allowed}
+.fault-quick-hint{margin:10px 0 0;color:#5c7177;font-size:.87rem;line-height:1.5}
+.fault-disclosure{margin:10px 0;border:1px solid #d7e3e6;border-radius:10px;background:#fff;scroll-margin-top:16px}
+.fault-disclosure>summary{cursor:pointer;min-height:44px;display:list-item;padding:12px 15px;font-weight:700;font-size:.92rem;color:#2c4e55}
+.fault-disclosure[open]>summary{background:#f5f9f9;border-bottom:1px solid #dce7e9;border-radius:10px 10px 0 0}
+.fault-disclosure>form{margin:0;padding:2px 13px 12px}
+.fault-disclosure .fault-editor fieldset,.fault-disclosure fieldset{margin:8px 0 0}
+.fault-disclosure>.fault-log{padding:0 15px;margin:10px 0}
+.fault-editor .fault-quick-button,.fault-editor .fault-disclosure summary{font-size:max(.9rem,14px)}
+@media(max-width:620px){.fault-quick-overview,.fault-quick-actions{padding:12px}.fault-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fault-quick-buttons{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.fault-quick-button{font-size:.86rem;padding:10px;min-height:46px}}
+
+.fault-quick-feedback:not(:empty){border-radius:8px;border:1px solid #cde1e5;background:#eff9f8;padding:10px 13px;margin:10px 0;font-size:.92rem;line-height:1.5;scroll-margin:18px}
+.fault-quick-feedback.fault-error{border-color:#e3b8b1;background:#fff1ef}
+
+.fault-closure-preflight{padding:12px;border-radius:9px;background:#eff8f6;border:1px solid #cee2df;color:#205158;line-height:1.55;margin:8px 0}
+.fault-closure-preflight.fault-closure-warning{background:#fff5ea;border-color:#f0d1a6;color:#814a16}
+
+/* 기존 고장 연결 추천 안내 */
+.fault-link-suggestion{margin:0.35rem 0 0.6rem;line-height:1.5;font-size:0.88rem;color:var(--text-muted,#536274)}
+
+/* Prioritize the next available action without hiding any existing workflow. */
+.fault-next-action{margin:4px 0 12px;padding:10px 12px;border-left:3px solid #2d8279;background:#f2faf8;color:#24514d;line-height:1.55;font-size:.9rem}
+.fault-quick-button.fault-quick-recommended{border:2px solid #308578;background:#e8f6f0;color:#174a42}

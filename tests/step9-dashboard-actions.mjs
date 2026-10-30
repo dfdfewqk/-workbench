@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const dir=new URL('../docs/smart-maintenance/',import.meta.url);
+const html=readFileSync(new URL('index.html',dir),'utf8');
+const dashboard=readFileSync(new URL('dashboard.js',dir),'utf8');
+const app=readFileSync(new URL('app.js',dir),'utf8');
+assert.match(html, /class="dashboard-actions"/);
+assert.match(html, /data-go="schedule"[^>]*><span>기한초과 점검 확인/);
+assert.match(html, /data-go="faults"[^>]*><span>미해결 고장 확인/);
+assert.match(dashboard,/actionCounts\(overdue\.length,data\.faults\.filter\(f=>f\.status==='open'\)\.length\)/);
+assert.match(dashboard,/function unavailable\([^)]*\)\{actionCounts\(null,null\)/);
+assert.match(app,/querySelectorAll\('\[data-go\]'\)/);
+console.log('step9 dashboard priority shortcuts pass');

@@ -1,0 +1,30 @@
+.repair-panel{border-top:1px solid #dce3ec;margin-top:20px;padding-top:16px}
+.repair-panel h3{margin:0 0 10px}
+.repair-panel form{margin:12px 0}
+.repair-card{border:1px solid #dce4ed;border-radius:10px;padding:12px;margin:10px 0;background:#fff}
+.repair-card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.repair-chip{display:inline-flex;padding:3px 8px;border-radius:30px;background:#eaf1f9;color:#294564;font-size:.85rem;white-space:nowrap}
+.repair-members{margin:8px 0 0;padding-left:18px}
+.repair-members li{padding:5px 0}
+.repair-members .repair-chip{margin-left:8px}
+.repair-members p{margin:4px 0}
+.repair-muted{color:#5c6b7b;font-size:.9rem;white-space:pre-wrap}
+.repair-warning{color:#a0301d;font-weight:600;white-space:pre-wrap}
+.repair-panel fieldset{border:1px solid #dbe3ec;border-radius:10px;padding:12px}
+.repair-panel legend{font-weight:700;padding:0 5px}
+.repair-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.repair-fields label{display:flex;flex-direction:column;gap:5px;font-size:.9rem;font-weight:600}
+.repair-fields label.repair-wide{grid-column:1/-1}
+.repair-fields input,.repair-fields textarea,.repair-fields select{max-width:100%;width:100%;font:inherit;font-weight:400;padding:8px;border:1px solid #c7d2e0;border-radius:6px;background:white;color:#1b2637}
+.repair-fields textarea{min-height:58px;resize:vertical}
+.repair-panel button{margin-top:10px}
+.repair-alert{padding:10px;background:#fff5e8;border:1px solid #f2cea2;border-radius:8px;color:#764e14}
+#repair-note{color:#315582}
+
+/* UX: per-task contextual actions instead of searching across five separate forms. */
+.repair-task-actions,.repair-worker-actions{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:8px 0 3px}
+.repair-card .repair-card-action{margin:0;min-height:38px;padding:8px 12px;border:1px solid #c0d5da;border-radius:8px;background:#f4faf9;color:#205259;font:inherit;font-size:.9rem;font-weight:650;cursor:pointer}
+.repair-card .repair-card-action:hover,.repair-card .repair-card-action:focus-visible{background:#e3f3f0;border-color:#4c9f93}
+.repair-worker-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.repair-task-actions{border-top:1px solid #e4e9ea;padding-top:10px}
+.repair-card{scroll-margin-top:16px}

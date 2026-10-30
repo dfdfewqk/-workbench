@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const source=fs.readFileSync('docs/smart-maintenance/plan-execution.js','utf8');
+assert.match(source,/await commit\(record,sig\(current\.items\)\);[\s\S]*?if\(record\.overallResult==='normal'\)/,'Auto-advance must run only after commit resolves');
+assert.match(source,/function chooseNextDueInspection\(currentPlanId\)/);
+assert.match(source,/await start\(next\.dataset\.scheduleStart,next,next\.dataset\.scheduleDueDate,next\.dataset\.scheduleMissed,next\.dataset\.scheduleOccurrenceId\)/);
+assert.match(source,/catch\(error\)\{say\('정상 점검은 저장했습니다/);
+assert.match(source,/\}catch\(e\)\{submit\.disabled=false/,'Save failure must retain editable form');
+assert.match(source,/if\(!items\.length\|\|items\.some\(i=>!Object\.hasOwn\(LABELS,i\.result\)\)\)/,'All judgments required');
+console.log('PASS: normal-only post-commit next-plan navigation, failure/edit retention, required judgments');

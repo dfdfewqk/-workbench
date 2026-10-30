@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const ui=fs.readFileSync('docs/smart-maintenance/faults.js','utf8');
+const model=fs.readFileSync('docs/smart-maintenance/fault-model.js','utf8');
+assert.match(ui,/f\.equipmentId===equipmentId&&f\.status==='open'/,'recommend only open faults of same equipment');
+assert.match(ui,/widget\.select\.value=''/,'new fault is the default');
+assert.match(ui,/자동 연결되지는 않습니다/,'no automatic linking');
+assert.match(ui,/다른 문제라면 '새 고장으로 등록'/,'new fault remains available');
+assert.match(ui,/serial!==widget\.requestSerial/,'stale results not shown');
+assert.match(ui,/requestSerial:0/,'request version is tracked');
+assert.match(model,/existing\.status !== 'open' \|\| existing\.equipmentId !== record\.equipmentId/,'model validates linkage');
+console.log('PASS: fault link recommendation policy regression');

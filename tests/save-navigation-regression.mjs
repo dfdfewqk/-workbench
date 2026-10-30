@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const base=new URL('../docs/smart-maintenance/', import.meta.url);
+const plan=readFileSync(new URL('plan-execution.js',base),'utf8');
+const autosave=readFileSync(new URL('plan-autosave.js',base),'utf8');
+const app=readFileSync(new URL('app.js',base),'utf8');
+for (const term of ['hasUnsavedInspectionInput','mayLeaveInspection','if(saving)','globalThis.confirm','beforeunload','if(!mayLeaveInspection())return']) assert.ok(plan.includes(term),term);
+assert.ok(app.includes('SmartMaintenanceInspectionNavigation?.mayLeave?.() === false'));
+assert.ok(autosave.includes('approveStartClick(planId)'));
+assert.ok(autosave.includes('event.stopImmediatePropagation()'));
+assert.ok(plan.includes('consumeStartApproval(planId)'));
+assert.ok(plan.includes("await commit(record,sig(current.items))"),'preserve existing commit transaction');
+console.log('PASS save/navigation safety guard');

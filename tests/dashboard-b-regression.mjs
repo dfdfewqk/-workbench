@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import fs from 'node:fs';
+const code=fs.readFileSync(new URL('../docs/smart-maintenance/dashboard.js',import.meta.url),'utf8');
+const context={document:{querySelector:()=>null},module:{exports:{}},globalThis:{}};
+const helpers=code.slice(code.indexOf('function representativeRows('),code.indexOf('function renderDue('));
+vm.runInNewContext(helpers,context);
+const {dashboardCounts,representativeRows}=context.module.exports;
+const base={plan:{id:'p1'},equipment:{id:'e1'},dueDate:'2026-10-29'};
+const rows=[{...base,kind:'overdue',rowType:'missed'},{...base,kind:'scheduled',rowType:'plan'}, {...base,dueDate:'2026-10-30',kind:'paused',rowType:'paused'}, {...base,dueDate:'2026-10-30',kind:'today',rowType:'plan'}, {...base,dueDate:'2026-11-01',kind:'scheduled',rowType:'plan'}, {...base,plan:{id:'p2'},kind:'overdue',rowType:'missed'}];
+const c=dashboardCounts(rows,'2026-10-30','2026-11-06');
+assert.equal(c.unique.length,4); assert.equal(c.overdue.length,2);assert.equal(c.missed.length,2);assert.equal(c.paused.length,1);assert.equal(c.todayDue.length,0);assert.equal(c.nextSevenDays.length,1);
+assert.equal(representativeRows(rows).find(x=>x.dueDate==='2026-10-30').kind,'paused');
+assert.equal(c.unique.filter(x=>x.kind==='paused').length,1);
+console.log('dashboard B regression: PASS');
